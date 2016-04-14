@@ -1,3 +1,6 @@
+<?php
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -54,7 +57,7 @@
 	</head>
 
 	<body>
-
+        <?php if ($_SESSION['FBID']): ?>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 		  <div class="container">
 			<div class="navbar-header">
@@ -69,8 +72,8 @@
 			<div id="navbar" class="navbar-collapse collapse">
 			  <form class="navbar-form navbar-right">
 				<div class="form-group">
-                    <button type="submit" class="btn btn-primary"><a href="edit.html" style="color: white">Edit</a></button>
-				 <button type="submit" class="btn btn-primary">Logout</button>
+				 <button type="submit" class="btn btn-primary"><a href="edit.html" style="color: white">Edit</a></button>
+				 <button type="submit" class="btn btn-primary"><a href="../phplogin/logout.php" style="color: white">Logout</a></button>
 				</div>
 			  </form>
 			</div><!--/.navbar-collapse -->
@@ -114,8 +117,9 @@
 				 <div class="form-group">
 				  <div class="right col-xs-12">
 					<ul class="nav nav-pills">
-						<li class="active"><a href="search_map.html">Map</a></li>
-						<li><a href="search_list.html">Liste</a></li>
+						<li><a href="search_map.html">Map</a></li>
+						<li class="active"><a href="search_list.html">Liste</a></li>
+
 					</ul>
 				  </div>
 				</div>	
@@ -144,7 +148,43 @@
 				</div>
 				
 				<div class="col-md-6">
-					 <div id="map"></div>
+					<table class="table table-striped">
+						<thead>
+						<tr>
+							<th>Name</th>
+							<th>PLZ</th>
+							<th>Ort</th>
+							<th>Angebot</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>John</td>
+							<td>John</td>
+							<td>Doe</td>
+
+							<td>John</td>
+						</tr>
+						<tr>
+							<td>Mary</td>
+							<td>Moe</td>
+							<td>mary@example.com</td>
+							<td>John</td>
+						</tr>
+						<tr>
+							<td>July</td>
+							<td>Dooley</td>
+							<td>july@example.com</td>
+							<td>John</td>
+						</tr>
+						<tr>
+							<td>July</td>
+							<td>John</td>
+							<td>July</td>
+							<td>July</td>
+						</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 			
@@ -163,6 +203,17 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="bootstrap-3.3.6/dist/js/bootstrap.min.js"></script>
-		
+		    <?php else: ?>   
+       <!-- Before login --> 
+        <div class="container">
+            <h1>Login with Facebook</h1>
+           Not Connected
+            <div>
+                <a href=" http://localhost/projekt_web/phplogin/fbconfig.php">Login with Facebook</a>
+            </div>
+        </div>
+        <?php endif ?>   
+        
+        
 	</body>
 </html>
