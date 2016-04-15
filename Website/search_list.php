@@ -72,7 +72,7 @@ session_start();
 			<div id="navbar" class="navbar-collapse collapse">
 			  <form class="navbar-form navbar-right">
 				<div class="form-group">
-				 <button type="submit" class="btn btn-primary"><a href="edit.html" style="color: white">Edit</a></button>
+				 <button type="submit" class="btn btn-primary"><a href="edit.php" style="color: white">Edit</a></button>
 				 <button type="submit" class="btn btn-primary"><a href="../phplogin/logout.php" style="color: white">Logout</a></button>
 				</div>
 			  </form>
