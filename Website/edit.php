@@ -36,8 +36,8 @@ session_start();
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
             <div class="form-group">
-             <button type="submit" class="btn btn-primary"><a href="search_list.php" style="color: white">Search</a></button>
-			 <button type="submit" class="btn btn-primary">Logout</button>
+             <button type="button" class="btn btn-primary" onclick='location.href="search_list.php"'>Search</button>
+			 <button type="button" class="btn btn-primary" onclick='location.href="../phplogin/logout.php"'>Logout</button>
             </div>
           </form>
         </div><!--/.navbar-collapse -->

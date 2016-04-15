@@ -72,8 +72,8 @@ session_start();
 			<div id="navbar" class="navbar-collapse collapse">
 			  <form class="navbar-form navbar-right">
 				<div class="form-group">
-				 <button type="submit" class="btn btn-primary"><a href="edit.php" style="color: white">Edit</a></button>
-				 <button type="submit" class="btn btn-primary"><a href="../phplogin/logout.php" style="color: white">Logout</a></button>
+				 <button type="button" class="btn btn-primary" onclick='location.href="edit.php"'>Edit</button>
+				 <button type="button" class="btn btn-primary" onclick='location.href="../phplogin/logout.php"'>Logout</button>
 				</div>
 			  </form>
 			</div><!--/.navbar-collapse -->
