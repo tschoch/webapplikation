@@ -109,7 +109,7 @@ session_start();
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="offer4"></label>
 							<div class="col-sm-10">
-								<input class="form-control" id="offer4" placeholder="Mein Angebot 3" value="<?php echo $offer_1; ?>" >
+								<input class="form-control" id="offer4" placeholder="Mein Angebot 3" value="<?php echo $offer_3; ?>" >
 							</div>
 						</div>
 					</div>
