@@ -53,22 +53,35 @@ session_start();
     </div>
 
     <div class="container">
+        <?php
+        require '../phplogin/dbconfig.php';
+        $fuid = $_SESSION['FBID'];
+        $result = mysql_query("select * from Users where Fuid='$fuid'");
+        $row = mysql_fetch_array($result);
+        $city = $row["City"]; 
+        $nr = $row["Nr"];
+        $offer_1 = $row["Offer_1"];
+        $offer_2 = $row["Offer_2"];
+        $offer_3 = $row["Offer_3"];
+        $plz = $row["PLZ"]; 
+        $street = $row["Street"]; 
+        ?>
       <!-- Example row of columns -->
       <div class="row">
         <div class="form-group col-xs-12">
 				<form class="form-horizontal" role="form">
 					<div class="form-group">
-                        <p><?php echo $result['Ffname'];?></p>
+                        <p><?php echo $_SESSION['Ffname'];?></p>
 					    <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="name">Name:</label>
 							<div class="col-sm-10">
-								<input  class="form-control" id="name" placeholder="<?php echo $_SESSION['FULLNAME']; ?>" disabled>
+								<input  class="form-control" id="name" value="<?php echo $_SESSION['FULLNAME']; ?>" disabled>
 							</div>
 						</div>
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="offer1">Angebot:</label>
 							<div class="col-sm-10">
-								<input class="form-control" id="offer1" placeholder="Mein Angebot 1">
+								<input class="form-control" id="offer1" placeholder="Mein Angebot 1" value="<?php echo $offer_1; ?>" >
 							</div>
 						</div>
 					</div>
@@ -76,13 +89,13 @@ session_start();
 					    <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="email">E-Mail:</label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="email" placeholder="<?php echo $_SESSION['EMAIL']; ?>" disabled>
+								<input type="email" class="form-control" id="email" value="<?php echo $_SESSION['EMAIL']; ?>" disabled>
 							</div>
 						</div>    
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="offer2"></label>
 							<div class="col-sm-10">
-								<input class="form-control" id="offer2" placeholder="Mein Angebot 2">
+								<input class="form-control" id="offer2" placeholder="Mein Angebot 2" value="<?php echo $offer_2; ?>" >
 							</div>
 						</div>
 					</div>
@@ -90,13 +103,13 @@ session_start();
 					    <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="str">Strasse:</label>
 							<div class="col-sm-10">
-								<input class="form-control" id="str" placeholder="Strasse">
+								<input class="form-control" id="str" placeholder="Strasse" value="<?php echo $street; ?>" >
 							</div>
 						</div>
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="offer4"></label>
 							<div class="col-sm-10">
-								<input class="form-control" id="offer4" placeholder="Mein Angebot 3">
+								<input class="form-control" id="offer4" placeholder="Mein Angebot 3" value="<?php echo $offer_1; ?>" >
 							</div>
 						</div>
 					</div>
@@ -104,7 +117,7 @@ session_start();
 					    <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="strnr">Nr:</label>
 							<div class="col-sm-10">
-								<input class="form-control" id="strnr" placeholder="Strassennummer">
+								<input class="form-control" id="strnr" placeholder="Strassennummer" value="<?php echo $nr; ?>" >
 							</div>
 						</div>
 						<div class="col-xs-6">
@@ -118,7 +131,7 @@ session_start();
 					     <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="plz">PLZ:</label>
 							<div class="col-sm-10">
-								<input class="form-control" id="plz" placeholder="PLZ">
+								<input class="form-control" id="plz" placeholder="PLZ" value="<?php echo $plz; ?>">
 							</div>
 						</div>
 						<div class="col-xs-6">
@@ -132,7 +145,7 @@ session_start();
 					     <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="place">Ort:</label>
 							<div class="col-sm-10">
-								<input class="form-control" id="place" placeholder="Ort">
+								<input class="form-control" id="place" placeholder="Ort" value="<?php echo $city; ?>">
 							</div>
 						</div>
 						<div class="col-xs-6">
@@ -159,7 +172,39 @@ session_start();
         <p>&copy; 2016 Schoch/Mosberger</p>
       </footer>
     </div> <!-- /container -->
-
+    <?php else: ?>   
+       <!-- Before login --> 
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+		  <div class="container">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand">Car Parts</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+			  <form class="navbar-form navbar-right">
+				</div>
+			  </form>
+			</div><!--/.navbar-collapse -->
+		  </div>
+		</nav>
+        
+        <div class="jumbotron">
+		  <div class="container" style="text-align: center">
+            <br>  
+			<h1>Willkommen bei CarParts</h1>
+		  </div>
+		</div>
+        <div class="container" style="text-align: center">
+            <h2>Not Connected</h2>
+            <h2>Login with Facebook</h2>
+            <a class="btn btn-primary" href=" http://localhost/projekt_web/phplogin/fbconfig.php" role="button" >Login</a>
+        </div>
+    <?php endif ?>  
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -168,16 +213,5 @@ session_start();
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="bootstrap-3.3.6/dist/js/bootstrap.min.js"></script>
 	<script src="script.js"></script>
-      
-    <?php else: ?>   
-       <!-- Before login --> 
-        <div class="container">
-            <h1>Login with Facebook</h1>
-           Not Connected
-            <div>
-                <a href=" http://localhost/projekt_web/phplogin/fbconfig.php">Login with Facebook</a>
-            </div>
-        </div>
-        <?php endif ?>  
   </body>
 </html>

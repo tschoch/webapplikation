@@ -1,3 +1,6 @@
+<?php
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -12,49 +15,15 @@
 
 		<!-- Bootstrap core CSS -->
 		<link href="bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
-
-	    <script>
-			function initMap() {
-			  var map = new google.maps.Map(document.getElementById('map'), {
-				zoom: 7,
-				center: {lat: 46.8209, lng: 8.4078}
-			  });
-			}
-		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap"
-        async defer></script>
-		<style>
-			#map {
-				width: 560px;
-				height: 400px;
-			}
-				.rating {
-		  unicode-bidi: bidi-override;
-		  direction: rtl;
-		  text-align: left;
-		}
-		.rating > span {
-		  display: inline-block;
-		  position: relative;
-		  width: 1.1em;
-		}
-		.rating > span:hover,
-		.rating > span:hover ~ span {
-		  color: transparent;
-		}
-		.rating > span:hover:before,
-		.rating > span:hover ~ span:before {
-		   content: "\2605";
-		   position: absolute;
-		   left: 0;
-		   color: gold;
-		}
-		</style>
-		  
+        <link href="stylesheet.css" rel="stylesheet">
+        
+	    <script src="script.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap" async defer></script>
+        
 	</head>
 
 	<body>
-
+         <?php if ($_SESSION['FBID']): ?>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 		  <div class="container">
 			<div class="navbar-header">
@@ -69,8 +38,8 @@
 			<div id="navbar" class="navbar-collapse collapse">
 			  <form class="navbar-form navbar-right">
 				<div class="form-group">
-                    <button type="submit" class="btn btn-primary"><a href="edit.html" style="color: white">Edit</a></button>
-				 <button type="submit" class="btn btn-primary">Logout</button>
+				 <button type="button" class="btn btn-primary" onclick='location.href="edit.php"'>Edit</button>
+				 <button type="button" class="btn btn-primary" onclick='location.href="../phplogin/logout.php"'>Logout</button>
 				</div>
 			  </form>
 			</div><!--/.navbar-collapse -->
@@ -156,7 +125,40 @@
 		  </footer>
 		</div> <!-- /container -->
 
-
+        <?php else: ?>   
+       <!-- Before login --> 
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+		  <div class="container">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand">Car Parts</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+			  <form class="navbar-form navbar-right">
+				</div>
+			  </form>
+			</div><!--/.navbar-collapse -->
+		  </div>
+		</nav>
+        
+        <div class="jumbotron">
+		  <div class="container" style="text-align: center">
+            <br>  
+			<h1>Willkommen bei CarParts</h1>
+		  </div>
+		</div>
+        <div class="container" style="text-align: center">
+            <h2>Not Connected</h2>
+            <h2>Login with Facebook</h2>
+            <a class="btn btn-primary" href=" http://localhost/projekt_web/phplogin/fbconfig.php" role="button" >Login</a>
+        </div>
+        <?php endif ?>  
+        
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
