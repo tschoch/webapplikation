@@ -88,20 +88,6 @@ session_start();
 					</div>
 					<div class="form-group">
 					    <div class="col-xs-6">
-							<label class="control-label col-sm-2" for="pwd">Passwort:</label>
-							<div class="col-sm-10">
-								<input type="password" class="form-control" id="pwd" placeholder="Passwort">
-							</div>
-						</div>
-						<div class="col-xs-6">
-							<label class="control-label col-sm-2" for="offer3"></label>
-							<div class="col-sm-10">
-								<input class="form-control" id="offer3" placeholder="Mein Angebot 3">
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-					    <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="str">Strasse:</label>
 							<div class="col-sm-10">
 								<input class="form-control" id="str" placeholder="Strasse">
@@ -110,7 +96,7 @@ session_start();
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="offer4"></label>
 							<div class="col-sm-10">
-								<input class="form-control" id="offer4" placeholder="Mein Angebot 4">
+								<input class="form-control" id="offer4" placeholder="Mein Angebot 3">
 							</div>
 						</div>
 					</div>

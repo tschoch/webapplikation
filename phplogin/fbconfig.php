@@ -45,7 +45,7 @@ if ( isset( $session ) ) {
     /* ---- header location after session ----*/
   header("Location: http://localhost/projekt_web/Website/search_list.php");
 } else {
-  $loginUrl = $helper->getLoginUrl();
+  $loginUrl = $helper->getLoginUrl( array('scope' => 'email'));
 header("Location: ".$loginUrl);
 }
 ?>
