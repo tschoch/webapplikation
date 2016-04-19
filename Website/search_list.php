@@ -19,7 +19,6 @@ session_start();
         
 	    <script src="script.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap" async defer></script>
-        <div id="fb-root"></div>
 	</head>
 
 	<body>
@@ -192,9 +191,8 @@ session_start();
         <div class="container" style="text-align: center">
             <h2>Not Connected</h2>
             <h2>Login with Facebook</h2>
-<!--            <a class="btn btn-primary" href=" http://localhost/projekt_web/phplogin/fbconfig.php" role="button" >Login</a>-->
             <br>
-            <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin= 'open' ></div>
+            <input type="image" style="height:40px;width:160px;" src="fb_button.png" onclick='location.href=" http://localhost/projekt_web/phplogin/fbconfig.php"'/>
         </div>
         <?php endif ?>   
 
