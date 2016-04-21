@@ -149,7 +149,7 @@ session_start();
                             <td><?php echo $row['Ffname']?></td>
                             <td><?php echo $row['PLZ']?></td>
                             <td><?php echo $row['City']?></td>
-                            <td><?php echo $offer?></td>
+                            <td><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?></td>
                             </tr> 
                         <?php
                             }
