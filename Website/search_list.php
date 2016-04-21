@@ -53,9 +53,23 @@ session_start();
 		  </div>
 		</div>
 
+        
+         <?php
+        require '../phplogin/dbconfig.php';
+        
+        $offer = $_POST['search'];
+        $place = $_POST['place'];
+        $range = $_POST['range'];
+        
+        $results = mysql_query("SELECT * FROM Users WHERE Offer_1='$offer' OR Offer_2='$offer' OR Offer_3='$offer' OR PLZ = '$place' OR City = '$place' ");
+        
+        ?>
+        
+        
 		<div class="container">
 		  <!-- Example row of columns -->
 		  <div class="row">
+            <form class="form-horizontal" action="" method="post">
 			<div class="col-md-12">
 				<form class="form-horizontal">
 			<div class="form-group">
@@ -71,11 +85,12 @@ session_start();
 			  </div>
 			  <div class="form-group">
 				  <div class="col-xs-12">
-					<button class="btn btn-primary pull-right">Suche</button>
+					<button type="submit" class="btn btn-primary pull-right">Suche</button>
 				  </div>
 			  </div>	
 		  </form>
 			</div>
+            </form>    
 		  </div>
 		<hr>
 			<div class="row"> 
@@ -123,7 +138,24 @@ session_start();
 						</tr>
 						</thead>
 						<tbody>
-						<tr>
+                            
+                        <?php   
+                            
+                            while($row = mysql_fetch_array($results)) {
+                            
+                        ?>  
+                            
+                            <tr>
+                            <td><?php echo $row['Ffname']?></td>
+                            <td><?php echo $row['PLZ']?></td>
+                            <td><?php echo $row['City']?></td>
+                            <td><?php echo $offer?></td>
+                            </tr> 
+                        <?php
+                            }
+                        ?>
+                            
+<!--						<tr>
 							<td>John</td>
 							<td>John</td>
 							<td>Doe</td>
@@ -147,7 +179,7 @@ session_start();
 							<td>John</td>
 							<td>July</td>
 							<td>July</td>
-						</tr>
+						</tr>-->
 						</tbody>
 					</table>
 				</div>

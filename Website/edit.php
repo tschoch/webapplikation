@@ -104,7 +104,7 @@ session_start();
 					    <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="str">Strasse:</label>
 							<div class="col-sm-10">
-								<input class="form-control" type="text" name="str" id="str" placeholder="Strasse" value="<?php echo $street; ?>" >
+								<input class="form-control" name="str" id="str" placeholder="Strasse" value="<?php echo $street; ?>" >
 							</div>
 						</div>
 						<div class="col-xs-6">
