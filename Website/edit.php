@@ -68,6 +68,7 @@ session_start();
         ?>
       <!-- Example row of columns -->
       <div class="row">
+        <form class="form-horizontal" action="send_post.php" method="post">
         <div class="form-group col-xs-12">
 				<form class="form-horizontal" role="form">
 					<div class="form-group">
@@ -81,7 +82,7 @@ session_start();
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="offer1">Angebot:</label>
 							<div class="col-sm-10">
-								<input class="form-control" id="offer1" placeholder="Mein Angebot 1" value="<?php echo $offer_1; ?>" >
+								<input class="form-control" name="offer1" id="offer1" placeholder="Mein Angebot 1" value="<?php echo $offer_1; ?>" >
 							</div>
 						</div>
 					</div>
@@ -95,7 +96,7 @@ session_start();
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="offer2"></label>
 							<div class="col-sm-10">
-								<input class="form-control" id="offer2" placeholder="Mein Angebot 2" value="<?php echo $offer_2; ?>" >
+								<input class="form-control" name="offer2" id="offer2" placeholder="Mein Angebot 2" value="<?php echo $offer_2; ?>" >
 							</div>
 						</div>
 					</div>
@@ -103,13 +104,13 @@ session_start();
 					    <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="str">Strasse:</label>
 							<div class="col-sm-10">
-								<input class="form-control" id="str" placeholder="Strasse" value="<?php echo $street; ?>" >
+								<input class="form-control" type="text" name="str" id="str" placeholder="Strasse" value="<?php echo $street; ?>" >
 							</div>
 						</div>
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="offer4"></label>
 							<div class="col-sm-10">
-								<input class="form-control" id="offer4" placeholder="Mein Angebot 3" value="<?php echo $offer_3; ?>" >
+								<input class="form-control" name="offer3" id="offer3" placeholder="Mein Angebot 3" value="<?php echo $offer_3; ?>" >
 							</div>
 						</div>
 					</div>
@@ -117,7 +118,7 @@ session_start();
 					    <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="strnr">Nr:</label>
 							<div class="col-sm-10">
-								<input class="form-control" id="strnr" placeholder="Strassennummer" value="<?php echo $nr; ?>" >
+								<input class="form-control" name="nr" id="nr" placeholder="Strassennummer" value="<?php echo $nr; ?>" >
 							</div>
 						</div>
 						<div class="col-xs-6">
@@ -131,7 +132,7 @@ session_start();
 					     <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="plz">PLZ:</label>
 							<div class="col-sm-10">
-								<input class="form-control" id="plz" placeholder="PLZ" value="<?php echo $plz; ?>">
+								<input class="form-control" name="plz" id="plz" placeholder="PLZ" value="<?php echo $plz; ?>">
 							</div>
 						</div>
 						<div class="col-xs-6">
@@ -145,7 +146,7 @@ session_start();
 					     <div class="col-xs-6">
 							<label class="control-label col-sm-2" for="place">Ort:</label>
 							<div class="col-sm-10">
-								<input class="form-control" id="place" placeholder="Ort" value="<?php echo $city; ?>">
+								<input class="form-control" name="place" id="place" placeholder="Ort" value="<?php echo $city; ?>">
 							</div>
 						</div>
 						<div class="col-xs-6">
@@ -158,11 +159,12 @@ session_start();
 					
 					<div class="form-group">
 						<div class="col-xs-12">
-							<button class="btn btn-primary pull-right">Submit</button>
+							<button class="btn btn-primary pull-right" type="submit">Submit</button>
 						</div>
 					</div>	
 				</form>	
         </div>
+        </form>
       </div>
 
 
