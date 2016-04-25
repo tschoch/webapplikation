@@ -11,6 +11,17 @@
 \usepackage{color}
 \usepackage[a4paper,left=2cm,right=2cm,top=3cm,bottom=3cm]{geometry}
 \usepackage{float}
+\usepackage{listings}
+\lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
 \usepackage{pdfpages}
 \usepackage[headsepline,footsepline]{scrlayer-scrpage}
 \renewcommand*{\chapterheadstartvskip}{\vspace*{0.0\baselineskip}}
@@ -58,6 +69,10 @@
 \tableofcontents 
 \pagebreak
 
+%%--------listings----------
+%\lstlistoflistings
+%\newpage
+
 %--------Inhalt----------
 \chapter{Projektidee}
 Ein Webtool zur Suche von Ersatzteilen oder Dienstleistungen im Zusammenhang mit Autos soll erstellt werden. Dabei soll der Benutzer sich mit Facebook einloggen können, um allfällige Bewertungen abzugeben. Das Facebook-Login verhindert, dass eine Person zu viele gute oder schlechte Bewertungen verteilt. Der Benutzer kann nun eine Postleitzahl, eine maximale Reichweite und Stichwörter eingeben, daraus wird dem Benutzer eine Liste mit den verschiedenen Anbietern angezeigt mit einer kurzen Beschreibung, durch anklicken wird das komplette Profil des Anbieters angezeigt und es kann Kontakt aufgenommen werden. Die Liste der Anbieter Dienstleistungen sollen sich ebenfalls mit Facebook einloggen können und durch Anwählen eines Buttons zum Backend der Webapp gelangen, wo Sie Ihre Daten selber eingeben können. Es soll auch möglich sein, Fotos Ihrer Arbeiten zur Vorschau zur Verfügung zu stellen. 
@@ -77,6 +92,7 @@ Das Projekt erstreckt sich über das Frühlingssemester 2016. Das Abgabedatum is
 \noindent
 \textbf{Finanzierung:}\\
 Das Projekt soll finanzielle Mittel auskommen. Es sind lediglich 60 Arbeitsstunden pro Student gerechnet.
+
 \chapter{Anforderungsdokumentation}
 \section{Anforderungsliste}
 \begin{tabular}{ll}
@@ -99,9 +115,57 @@ Das Projekt soll finanzielle Mittel auskommen. Es sind lediglich 60 Arbeitsstund
 \includepdf[scale=0.75, pages=1-2, nup=1x2, angle=0,pagecommand=\section{Mockup} \thispagestyle{headings} ]{./Bilder/mockup.pdf} 
 \includepdf[scale=0.75, pages=3-, nup=1x2, angle=0,pagecommand= \thispagestyle{headings} ]{./Bilder/mockup.pdf} 
 
+\chapter{Architektur}
+GitHub-Repo: \url{https://github.com/tschoch/webapplikation}
+\section{Allgemein}
 
 
+\section{Facebook Login}
+Facebook login mit PHP SDK \cite{phpsdk}.
 
+\begin{lstlisting}[language=PHP, frame=single, captionpos=b,caption= search\_list.php]
+
+//session start
+<?php
+session_start(); 
+?>
+
+//prüfe ob eingeloggt
+<?php if ($_SESSION['FBID']):
+...
+php else: 
+...
+php endif 
+?> 
+\end{lstlisting}
+
+\noindent
+zugriff auf variablen:
+\begin{lstlisting}[language=PHP, frame=single, captionpos=b,caption= fbconfig.php]
+ // 
+ $graphObject = $response->getGraphObject();
+  
+         // speichere Facebookvariablen (id,name,email)
+         $fbid = $graphObject->getProperty('id');
+         $fbfullname = $graphObject->getProperty('name');
+         $femail = $graphObject->getProperty('email');
+         
+         //speichere Werte in Sessionvariablen
+         $_SESSION['FBID'] = $fbid;
+         $_SESSION['FULLNAME'] = $fbfullname;
+         $_SESSION['EMAIL'] =  $femail;
+ 	    
+\end{lstlisting}
+
+\newpage
+\section{Maps}
+
+\newpage
+\begin{thebibliography}{999}
+
+\bibitem{phpsdk}  Github. facebook-php-sdk-v4
+ URL: \url{https://github.com/facebook/facebook-php-sdk-v4/} [Stand 6.4.2016].
+\end{thebibliography}
 \end{document}
 
 

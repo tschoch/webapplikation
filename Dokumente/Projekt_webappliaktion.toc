@@ -5,3 +5,7 @@
 \contentsline {section}{\numberline {3.1}Anforderungsliste}{5}{section.3.1}
 \contentsline {section}{\numberline {3.2}Datenmodell}{6}{section.3.2}
 \contentsline {section}{\numberline {3.3}Mockup}{7}{section.3.3}
+\contentsline {chapter}{\numberline {4}Architektur}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}Allgemein}{9}{section.4.1}
+\contentsline {section}{\numberline {4.2}Facebook Login}{9}{section.4.2}
+\contentsline {section}{\numberline {4.3}Maps}{10}{section.4.3}
