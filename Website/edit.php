@@ -205,7 +205,7 @@ session_start();
             <h2>Not Connected</h2>
             <h2>Login with Facebook</h2>
             <br>
-            <input type="image" style="height:40px;width:160px;" src="fb_button.png" onclick='location.href=" http://localhost/projekt_web/phplogin/fbconfig.php"'/>
+            <input type="image" style="height:40px;width:160px;" src="fb_button.png" onclick='location.href=" ../phplogin/fbconfig.php"'/>
         </div>
     <?php endif ?>  
 

@@ -43,7 +43,7 @@ if ( isset( $session ) ) {
     
     checkuser($fbid,$fbfullname,$femail); // To update local DB
     /* ---- header location after session ----*/
-  header("Location: http://localhost/projekt_web/Website/search_list.php");
+  header("Location: ../Website/search_list.php");
 } else {
   $loginUrl = $helper->getLoginUrl( array('scope' => 'email'));
 header("Location: ".$loginUrl);
