@@ -68,7 +68,7 @@ session_start();
         ?>
       <!-- Example row of columns -->
       <div class="row">
-        <form class="form-horizontal" action="send_post.php" method="post">
+        <form class="form-horizontal" action="send_post.php" method="post" enctype="multipart/form-data" >
         <div class="form-group col-xs-12">
 				<form class="form-horizontal" role="form">
 					<div class="form-group">
@@ -124,7 +124,7 @@ session_start();
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="pic1">Bilder:</label>
 							<div class="col-sm-10">
-								<input type="file" class="form-control" id="pic1" >
+								<input type="file" class="form-control" name="pic1" id="pic1" >
 							</div>
 						</div>
 					</div>
