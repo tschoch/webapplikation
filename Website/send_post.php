@@ -82,26 +82,41 @@ $query_place= "UPDATE Users SET City='$place' WHERE Fuid='$fuid'";
 mysql_query($query_place);    
 }
 
+//fileupload
+/*$uploaddir = 'uploads/';
+$uploadfile = $uploaddir . basename($_FILES['picture']['name']);
+move_uploaded_file($_FILES['picture']['tmp_name'], $uploadfile); */
+$count=1;
 
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["pic1"]["name"]);
-$uploadOk = 1;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
+if($count > 3):
+foreach ($_FILES["pictures"]["error"] as $key => $error) {
+    $check = getimagesize($_FILES["pictures"]["tmp_name"][$key]);
+    if($check !== false):
+    if ($error == UPLOAD_ERR_OK) {
+        $tmp_name = $_FILES["pictures"]["tmp_name"][$key];
+        $name = $_FILES["pictures"]["name"][$key];
+        move_uploaded_file($tmp_name, "uploads/$fuid.$count");
     }
+    $count++;
+    endif;
 }
-
+else:
+$count=1;
+foreach ($_FILES["pictures"]["error"] as $key => $error) {
+    $check = getimagesize($_FILES["pictures"]["tmp_name"][$key]);
+    if($check !== false):
+    if ($error == UPLOAD_ERR_OK) {
+        $tmp_name = $_FILES["pictures"]["tmp_name"][$key];
+        $name = $_FILES["pictures"]["name"][$key];
+        move_uploaded_file($tmp_name, "uploads/$fuid.$count");
+    }
+    $count++;
+    endif;
+};
+endif;
 
              
-header("Location: http://localhost/projekt_web/Website/edit.php");
+header("Location: edit.php");
 
 ?>
 

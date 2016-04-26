@@ -124,7 +124,7 @@ session_start();
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="pic1">Bilder:</label>
 							<div class="col-sm-10">
-								<input type="file" class="form-control" name="pic1" id="pic1" >
+								<input type="file" class="form-control" multiple="" name="pictures[]" id="pic1" >
 							</div>
 						</div>
 					</div>
@@ -138,7 +138,7 @@ session_start();
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="pic2"></label>
 							<div class="col-sm-10">
-								<input type="file" class="form-control" id="pic2" >
+								<input type="file" class="form-control" multiple="" name="pictures[]" id="pic2" >
 							</div>
 						</div>
 					</div>
@@ -152,14 +152,14 @@ session_start();
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="pic3"></label>
 							<div class="col-sm-10">
-								<input type="file" class="form-control" id="pic3" >
+								<input type="file" class="form-control" multiple="" name="pictures[]" id="pic3" >
 							</div>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<div class="col-xs-12">
-							<button class="btn btn-primary pull-right" type="submit">Submit</button>
+							<button class="btn btn-primary pull-right" type="submit" name="submit" >Submit</button>
 						</div>
 					</div>	
 				</form>	
