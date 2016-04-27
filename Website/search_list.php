@@ -102,15 +102,20 @@ session_start();
 			<hr>	
 			<?php
                 $search = mysql_fetch_row($result);
-                $fid   =  $search[1];
+                $fid    =  $search[1];
+                $ort    =  $search[10];
+                $plz    =  $search[9];
+                $o_1    =  $search[4];
+                $o_2    =  $search[5];
+                $o_3    =  $search[6];
             ?>
 			<div class="row"> 
 				<div class="col-md-6 well">
 					<div class="col-md-6">
 						<h2>Anbieter 1</h2>
-						<p>9320 Arbon</p>
+						<p><?php echo $plz; ?> <?php echo $ort; ?></p>
 						<br>
-						<p>spezialisiert auf innenausbau</p>
+						<p>spezialisiert auf <?php echo $o_1; ?>, <?php echo $o_2; ?>, <?php echo $o_3; ?></p>
 						<div class="rating">
 							<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
 						</div>
