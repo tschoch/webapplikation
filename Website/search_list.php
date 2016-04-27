@@ -100,7 +100,10 @@ session_start();
 			</div>	
 			
 			<hr>	
-			
+			<?php
+                $search = mysql_fetch_row($result);
+                $fid   =  $search[1];
+            ?>
 			<div class="row"> 
 				<div class="col-md-6 well">
 					<div class="col-md-6">
@@ -117,10 +120,13 @@ session_start();
 						<br>
 						<br>
 						<br>
-						<img src="bild1.jpg" style="width:100%"/>
+						<img src="uploads/<?php echo $fid; ?>.1" style="width:100%"/>
 					</div>
 				</div>
-				
+				<?php
+                    unset($search);
+                    unset($fid);
+                ?>
 				<div class="col-md-6">
 					<table class="table table-striped">
 						<thead>
@@ -137,8 +143,7 @@ session_start();
                             
                             while($row = mysql_fetch_array($results)) {
                             
-                        ?>  
-                            
+                        ?> 
                             <tr>
                             <td><?php echo $row['Ffname']?></td>
                             <td><?php echo $row['PLZ']?></td>
