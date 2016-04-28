@@ -109,13 +109,15 @@ session_start();
                 $column_o_2[] = $search['Offer_2'];
                 $column_o_3[] = $search['Offer_2'];
                 }
+                
+                $cloumn_counter = 0;
             
-                $fid    =  $column_fid[0];
-                $ort    =  $column_city[0];
-                $plz    =  $column_plz[0];
-                $o_1    =  $column_o_1[0];
-                $o_2    =  $column_o_2[0];
-                $o_3    =  $column_o_3[0];
+                $fid    =  $column_fid[$cloumn_counter];
+                $ort    =  $column_city[$cloumn_counter];
+                $plz    =  $column_plz[$cloumn_counter];
+                $o_1    =  $column_o_1[$cloumn_counter];
+                $o_2    =  $column_o_2[$cloumn_counter];
+                $o_3    =  $column_o_3[$cloumn_counter];
             
                 if (empty($fid)) {
                     $fid    =  12345;
