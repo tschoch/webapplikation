@@ -108,6 +108,10 @@ session_start();
                 $o_1    =  $search[4];
                 $o_2    =  $search[5];
                 $o_3    =  $search[6];
+            
+                if (empty($fid)) {
+                    $fid    =  12345;
+                }
             ?>
 			<div class="row"> 
 				<div class="col-md-6 well">
@@ -115,7 +119,7 @@ session_start();
 						<h2>Anbieter 1</h2>
 						<p><?php echo $plz; ?> <?php echo $ort; ?></p>
 						<br>
-						<p>spezialisiert auf <?php echo $o_1; ?>, <?php echo $o_2; ?>, <?php echo $o_3; ?></p>
+						<p>spezialisiert auf <?php "echo $o_1 ,  $o_2 , $o_3" ?></p>
 						<div class="rating">
 							<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
 						</div>
@@ -125,13 +129,9 @@ session_start();
 						<br>
 						<br>
 						<br>
-						<img src="uploads/<?php echo $fid; ?>.1" style="width:100%"/>
+						<img src="uploads/<?php echo $fid; ?>_1" style="width:100%"/>
 					</div>
 				</div>
-				<?php
-                    unset($search);
-                    unset($fid);
-                ?>
 				<div class="col-md-6">
 					<table class="table table-striped">
 						<thead>
@@ -147,43 +147,17 @@ session_start();
                         <?php   
                             
                             while($row = mysql_fetch_array($results)) {
-                            
+        
                         ?> 
                             <tr>
                             <td><?php echo $row['Ffname']?></td>
                             <td><?php echo $row['PLZ']?></td>
                             <td><?php echo $row['City']?></td>
-                            <td><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?></td>
+                            <td><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?>,</td>
                             </tr> 
                         <?php
                             }
                         ?>
-                            
-<!--						<tr>
-							<td>John</td>
-							<td>John</td>
-							<td>Doe</td>
-
-							<td>John</td>
-						</tr>
-						<tr>
-							<td>Mary</td>
-							<td>Moe</td>
-							<td>mary@example.com</td>
-							<td>John</td>
-						</tr>
-						<tr>
-							<td>July</td>
-							<td>Dooley</td>
-							<td>july@example.com</td>
-							<td>John</td>
-						</tr>
-						<tr>
-							<td>July</td>
-							<td>John</td>
-							<td>July</td>
-							<td>July</td>
-						</tr>-->
 						</tbody>
 					</table>
 				</div>
