@@ -101,13 +101,21 @@ session_start();
 			
 			<hr>	
 			<?php
-                $search = mysql_fetch_row($result);
-                $fid    =  $search[1];
-                $ort    =  $search[10];
-                $plz    =  $search[9];
-                $o_1    =  $search[4];
-                $o_2    =  $search[5];
-                $o_3    =  $search[6];
+                while($search = mysql_fetch_array($result)){
+                $column_fid[] = $search['Fuid'];
+                $column_city[] = $search['City'];
+                $column_plz[] = $search['PLZ']; 
+                $column_o_1[] = $search['Offer_1'];
+                $column_o_2[] = $search['Offer_2'];
+                $column_o_3[] = $search['Offer_2'];
+                }
+            
+                $fid    =  $column_fid[0];
+                $ort    =  $column_city[0];
+                $plz    =  $column_plz[0];
+                $o_1    =  $column_o_1[0];
+                $o_2    =  $column_o_2[0];
+                $o_3    =  $column_o_3[0];
             
                 if (empty($fid)) {
                     $fid    =  12345;
