@@ -111,6 +111,11 @@ session_start();
             
                 if (empty($fid)) {
                     $fid    =  12345;
+                    $ort    =  "Stadt";
+                    $plz    =  "PLZ";
+                    $o_1    =  "Angebot_1";
+                    $o_2    =  "Angebot_2";
+                    $o_3    =  "Angebot_3";
                 }
             ?>
 			<div class="row"> 
@@ -119,7 +124,7 @@ session_start();
 						<h2>Anbieter 1</h2>
 						<p><?php echo $plz; ?> <?php echo $ort; ?></p>
 						<br>
-						<p>spezialisiert auf <?php "echo $o_1 ,  $o_2 , $o_3" ?></p>
+						<p>spezialisiert auf <?php echo $o_1?>, <?php echo $o_2?>, <?php echo $o_3?></p>
 						<div class="rating">
 							<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
 						</div>
