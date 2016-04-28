@@ -17,7 +17,7 @@ session_start();
 		<link href="bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="stylesheet.css" rel="stylesheet">
         
-	    <script src="script.js"></script>
+	    <script src="script.php"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap" async defer></script>
         
 	</head>
@@ -54,11 +54,24 @@ session_start();
 		  </div>
 		</div>
 
+
+         <?php
+        require '../phplogin/dbconfig.php';
+        
+        $offer = $_POST['search'];
+        $place = $_POST['place'];
+        $range = $_POST['range'];
+        $results = mysql_query("SELECT * FROM Users WHERE Offer_1='$offer' OR Offer_2='$offer' OR Offer_3='$offer' OR PLZ = '$place' OR City = '$place' ");
+        echo "$place";
+
+     
+        ?>
+
 		<div class="container">
 		  <!-- Example row of columns -->
 		  <div class="row">
 			<div class="col-md-12">
-				<form class="form-horizontal">
+				<form class="form-horizontal" action="" method="post">
 			<div class="form-group">
 				  <div class="col-xs-4">
 					  <input class="form-control" id="search" name="search" placeholder="Suchbegriff" required="" type="text">
@@ -72,7 +85,7 @@ session_start();
 			  </div>
 			  <div class="form-group">
 				  <div class="col-xs-12">
-					<button class="btn btn-primary pull-right">Suche</button>
+					<button type="submit" id="ok" class="btn btn-primary pull-right" onclick="refresh(); return false;">Suche</button>
 				  </div>
 			  </div>	
 		  </form>
@@ -116,8 +129,27 @@ session_start();
 					 <div id="map"></div>
 				</div>
 			</div>
-			
-			
+		      
+                        <?php   
+                            
+                            while($row = mysql_fetch_array($results)) {
+                            
+                        ?>  
+
+		<form class="pager">
+                    <input type="hidden" id="fname" name="fname" value= "<?php echo $row['Ffname']?>" />
+                    <input type="hidden" id="plz" name="plz" value="<?php echo $row['PLZ']?>" />
+		    <input type="hidden" id="street" name="street" value="<?php echo $row['Street']?>" />
+		    <input type="hidden" id="nr" name="nr" value="<?php echo $row['Nr']?>" />
+                    <input type="hidden" id="city" name="city" value="<?php echo $row['City']?>" />
+                    <input type="hidden" id="offer" name="offer" value="<?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?>" />
+                </form>	
+	
+
+  			<?php
+                            }
+                        ?>
+
 
 		<hr>
 		  <footer>
@@ -156,7 +188,7 @@ session_start();
             <h2>Not Connected</h2>
             <h2>Login with Facebook</h2> 
             <br>
-            <input type="image" style="height:40px;width:160px;" src="fb_button.png" onclick='location.href=" ../phplogin/fbconfig.php"'/>
+            <input type="image" style="height:40px;width:160px;" src="fb_button.png" onclick='location.href=" http://localhost/projekt_web/phplogin/fbconfig.php"'/>
         </div>
         <?php endif ?>  
         
