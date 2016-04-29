@@ -116,22 +116,98 @@ Das Projekt soll finanzielle Mittel auskommen. Es sind lediglich 60 Arbeitsstund
 \includepdf[scale=0.75, pages=3-, nup=1x2, angle=0,pagecommand= \thispagestyle{headings} ]{./Bilder/mockup.pdf} 
 
 \chapter{Architektur}
-GitHub-Repo: \url{https://github.com/tschoch/webapplikation}
 \section{Allgemein}
+Die Webapplikation wurde mit dem Framework Bootstrap erstellt.
+Für das verwendete Javascript und PHP wurde kein Framework verwendet.
+Im folgenden ist der Facebook-Login und die Verwendung von Googlemaps in unserer Webapplikation beschrieben.\\
 
+\noindent
+\textbf{Links:}\\
+GitHub-Repo: \url{https://github.com/tschoch/webapplikation}\\
+Webapplikation: \url{http://614879-13.web.fh-htwchur.ch/projekt-web/Website/search_list.php}
 
-\section{Facebook Login}
-Facebook login mit PHP SDK \cite{phpsdk}.
+\section{Facebook-Login}
+Der Facebook login wurde mit dem PHP SDK \cite{phpsdk} von Facebook realisiert.
+Für einen Facebook Login muss ein Facebook Developer Account erstellt werden. Danach kann die App erstellt werden und es wird eine App-ID und ein App-Secret erstellt.
+Das Hauptskript für den Facebooklogin ist im folgenden beschrieben.\\
 
-\begin{lstlisting}[language=PHP, frame=single, captionpos=b,caption= search\_list.php]
-
-//session start
+\begin{lstlisting}[language=PHP, frame=single, captionpos=b,caption= fbconfig.php]
 <?php
-session_start(); 
+// einbinden des Autoloaders
+require_once 'autoload.php';
+
+...
+// Eingabe der App ID & des App Secret
+FacebookSession::setDefaultApplication( 'App_ID','App_Secret' );
+
+// erzeugen einer FacebookRedirectLoginHelper Instanz
+$helper = new FacebookRedirectLoginHelper(
+           'http://localhost/projekt_web/phplogin/fbconfig.php' );
+try {
+
+  //behandelt Facebook Rückmeldung und gibt Facebook Session zurück
+  $session = $helper->getSessionFromRedirect();
+} catch( FacebookRequestException $ex ) {
+  // Wenn Facebook einen Error zurück gibt
+} catch( Exception $ex ) {
+  // Wenn die Überprüfung fehlschlägt oder andere Probleme
+}
+
+// Überprüfen ob Session vorhanden
+if ( isset( $session ) ) {
+
+
+
+
+  // graph api anfrage für user data
+  $request = new FacebookRequest( 
+  $request = new FacebookRequest( 
+              $session, 'GET', '/me?locale=en_US&fields=id,name,email');
+  $response = $request->execute();
+  
+  // Antwort mit Daten
+  $graphObject = $response->getGraphObject();
+        $fbid  = $graphObject->getProperty('id');
+        $fbfullname = $graphObject->getProperty('name');
+        $femail = $graphObject->getProperty('email');    
+
+	    
+   // Variablen in Session variablen abspeichern
+   $_SESSION['FBID'] = $fbid;           
+   $_SESSION['FULLNAME'] = $fbfullname;
+   $_SESSION['EMAIL'] =  $femail;
+    
+   // DB aktualisieren
+   checkuser($fbid,$fbfullname,$femail);
+    
+   //header location after session
+   header("Location: ../Website/search_list.php");
+
+// wenn noch keine Session   
+} else {
+
+  //Umleitung zur Loginseite, definition der genutzten daten
+  $loginUrl = $helper->getLoginUrl( array('scope' => 'email'));
+  header("Location: ".$loginUrl);
+}
 ?>
 
+
+
+
+ 	    
+\end{lstlisting}
+
+\noindent
+Am Anfang einer Seite wird geprüft ob man bereits bei Facebook eingeloggt ist. Dies geschieht indem geprüft wird ob die Session variable FBID bereits gesetzt ist.
+
+\begin{lstlisting}[language=PHP, frame=single, captionpos=b,caption= search\_list.php]
+<?php
+//session start
+session_start(); 
+...
 //prüfe ob eingeloggt
-<?php if ($_SESSION['FBID']):
+if (\$_SESSION['FBID']):
 ...
 php else: 
 ...
@@ -139,23 +215,8 @@ php endif
 ?> 
 \end{lstlisting}
 
-\noindent
-zugriff auf variablen:
-\begin{lstlisting}[language=PHP, frame=single, captionpos=b,caption= fbconfig.php]
- // 
- $graphObject = $response->getGraphObject();
-  
-         // speichere Facebookvariablen (id,name,email)
-         $fbid = $graphObject->getProperty('id');
-         $fbfullname = $graphObject->getProperty('name');
-         $femail = $graphObject->getProperty('email');
-         
-         //speichere Werte in Sessionvariablen
-         $_SESSION['FBID'] = $fbid;
-         $_SESSION['FULLNAME'] = $fbfullname;
-         $_SESSION['EMAIL'] =  $femail;
- 	    
-\end{lstlisting}
+
+
 
 \newpage
 \section{Maps}
@@ -187,10 +248,13 @@ key=YOUR_API_KEY&callback=initMap">
 </html>
 \end{lstlisting}
 
-Für die Suche auf der Karte wird Google Map verwendet, auf dem vorhergehendem Bild ist die Erstellung einer einfachen Karte zu sehen. Wichtig ist, damit man dies tun kann, einen Entwickler Account bei Google zu machen, damit kann man sich dann einen API-Key für seine App generieren lassen. 
+\noindent
+Für die Suche auf der Karte wird Google Map verwendet, auf dem vorhergehendem Bild ist die Erstellung einer einfachen Karte zu sehen. Wichtig ist, damit man dies tun kann, einen Entwickler Account bei Google zu machen, damit kann man sich dann einen API-Key für seine App generieren lassen.\\
 
-Um die Adressen aus der Datenbank auf der Map darzustellen muss aus der Adresse die Längen- und Breitengrade herausgefunden werden. Erneut liefert Google dazu ein API, genannt Geocode, welches einem dies abnimmt. Dabei wird die Adresse von welcher die Geolocation gesucht wird dem Parameter adress in der Adresszeile des Browsers mitgegeben:
-https://maps.googleapis.com/maps/api/geocode/json?address=Pulverm
+\newpage
+\noindent
+Um die Adressen aus der Datenbank auf der Map darzustellen muss aus der Adresse die Längen- und Breitengrade herausgefunden werden. Erneut liefert Google dazu ein API, genannt Geocode, welches einem dies abnimmt. Dabei wird die Adresse von welcher die Geolocation gesucht wird dem Parameter adress in der Adresszeile des \\ 
+Browsers mitgegeben: https://maps.googleapis.com/maps/api/geocode/json?address=Pulverm
 %C3%BChlestrasse+57,+7000+Chur 
 Die Antwort kommt in diesem Fall mit JSON zurück, alternativ wäre noch XML verfügbar. Um diese Antwort in JavaScript zu verarbeiten wird        
 

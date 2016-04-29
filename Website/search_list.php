@@ -68,13 +68,13 @@ session_start();
 				<form class="form-horizontal">
 			<div class="form-group">
 				  <div class="col-xs-4">
-					  <input class="form-control" id="search" name="search" placeholder="Suchbegriff" required="" type="text">
+					  <input class="form-control" id="search" name="search" placeholder="Suchbegriff"  type="text">
 				  </div>
 				  <div class="col-xs-4">
-					  <input class="form-control" id="place" name="place" placeholder="Ort" required="" type="text">
+					  <input class="form-control" id="place" name="place" placeholder="Ort" type="text">
 				  </div>
 				  <div class="col-xs-4">
-					  <input class="form-control" id="range" name="range" placeholder="Umkreis in km" required="" type="text">
+					  <input class="form-control" id="range" name="range" placeholder="Umkreis in km"  type="text">
 				  </div>
 			  </div>
 			  <div class="form-group">
