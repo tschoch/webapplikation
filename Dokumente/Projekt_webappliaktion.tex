@@ -97,14 +97,14 @@ Das Projekt soll finanzielle Mittel auskommen. Es sind lediglich 60 Arbeitsstund
 \section{Anforderungsliste}
 \begin{tabular}{ll}
     A.1 & Der Kunde kann sich mit dem Facebook Account anmelden\\
-    A.2 & Der Dienstleister erstellt einen neuen Account\\
+    A.2 & Der Kunde kann sein Profil editieren\\
     A.3 & Der Dienstleister kann sein Profil editieren\\
     A.4 & Der Kunde kann nach Dienstleistung suchen\\
     A.5 & Der Kunde kann nach Radius suchen\\
     A.6 & Der Kunde kann den Dienstleister mit 1-5 bewerten\\
     A.7 & Der Kunde kann zwischen den Ansichten Liste und Map wählen\\
     A.8 & Der Dienstleister kann 0-3 Bilder hoch laden\\
-    A.9 & Der Dienstleister kann 1-n Dienstleistungen angeben\\
+    A.9 & Der Dienstleister kann 1-3 Dienstleistungen angeben\\
 
 \end{tabular}\\
 
@@ -118,7 +118,7 @@ Das Projekt soll finanzielle Mittel auskommen. Es sind lediglich 60 Arbeitsstund
 \chapter{Architektur}
 \section{Allgemein}
 Die Webapplikation wurde mit dem Framework Bootstrap erstellt.
-Für das verwendete Javascript und PHP wurde kein Framework verwendet.
+Um die Benutzung des JavaScript Codes zu vereinfachen, wurde die Bilbliotek JQuery verwendet. Für PHP wurde kein Framework verwendet.
 Im folgenden ist der Facebook-Login und die Verwendung von Googlemaps in unserer Webapplikation beschrieben.\\
 
 \noindent
@@ -155,7 +155,6 @@ try {
 
 // Überprüfen ob Session vorhanden
 if ( isset( $session ) ) {
-
 
 
 
@@ -254,8 +253,8 @@ Für die Suche auf der Karte wird Google Map verwendet, auf dem vorhergehendem B
 \newpage
 \noindent
 Um die Adressen aus der Datenbank auf der Map darzustellen muss aus der Adresse die Längen- und Breitengrade herausgefunden werden. Erneut liefert Google dazu ein API, genannt Geocode, welches einem dies abnimmt. Dabei wird die Adresse von welcher die Geolocation gesucht wird dem Parameter adress in der Adresszeile des \\ 
-Browsers mitgegeben: https://maps.googleapis.com/maps/api/geocode/json?address=Pulverm
-%C3%BChlestrasse+57,+7000+Chur 
+Browsers mitgegeben: \url{ https://maps.googleapis.com/maps/api/geocode/json?address=Pulverm
+%C3%BChlestrasse+57,+7000+Chur }
 Die Antwort kommt in diesem Fall mit JSON zurück, alternativ wäre noch XML verfügbar. Um diese Antwort in JavaScript zu verarbeiten wird        
 
 \begin{lstlisting}[ frame=single, captionpos=b,caption= script.php]
