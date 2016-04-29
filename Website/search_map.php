@@ -57,12 +57,8 @@ session_start();
 
          <?php
         require '../phplogin/dbconfig.php';
-        
-        $offer = $_POST['search'];
-        $place = $_POST['place'];
-        $range = $_POST['range'];
-        $results = mysql_query("SELECT * FROM Users WHERE Offer_1='$offer' OR Offer_2='$offer' OR Offer_3='$offer' OR PLZ = '$place' OR City = '$place' ");
-        echo "$place";
+        require 'search.php';
+        echo "$result";
 
      
         ?>
@@ -71,7 +67,7 @@ session_start();
 		  <!-- Example row of columns -->
 		  <div class="row">
 			<div class="col-md-12">
-				<form class="form-horizontal" action="" method="post">
+				<form class="form-horizontal" action="" method="post" id="subb">
 			<div class="form-group">
 				  <div class="col-xs-4">
 					  <input class="form-control" id="search" name="search" placeholder="Suchbegriff"  type="text">
@@ -85,7 +81,7 @@ session_start();
 			  </div>
 			  <div class="form-group">
 				  <div class="col-xs-12">
-					<button type="submit" id="ok" class="btn btn-primary pull-right" onclick="refresh(); return false;">Suche</button>
+					<button class="btn btn-primary pull-right" onclick="refresh(); return false;">Suche</button>
 				  </div>
 			  </div>	
 		  </form>

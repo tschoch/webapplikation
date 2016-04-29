@@ -9,7 +9,9 @@ function initMap() {
 }
 
 function refresh() {
-
+	console.log("hello");
+	Document.getElementById("subb").submit();
+	
 	addresse = "Arbon";	
 	console.log(addresse);
 
