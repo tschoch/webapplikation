@@ -99,8 +99,6 @@ foreach ($_FILES["pictures"]["error"] as $key => $error) {
         $name = $_FILES["pictures"]["name"][$key];
         move_uploaded_file($tmp_name, "uploads/$fuid_$count");
     }
-    else:
-    echo "Sorry, only JPG, JPEG, PNG are allowed.";
     $count++;
     endif;
 }
@@ -118,8 +116,6 @@ foreach ($_FILES["pictures"]["error"] as $key => $error) {
         $name = $_FILES["pictures"]["name"][$key];
         move_uploaded_file($tmp_name, "uploads/$fuid"."_"."$count");
     }
-    else:
-    echo "Sorry, only JPG, JPEG, PNG are allowed.";
     $count++;
     endif;
 };
