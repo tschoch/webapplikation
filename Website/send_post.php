@@ -90,26 +90,36 @@ $count=1;
 
 if($count > 3):
 foreach ($_FILES["pictures"]["error"] as $key => $error) {
-    $check = getimagesize($_FILES["pictures"]["tmp_name"][$key]);
-    if($check !== false):
+    $filename = $_FILES["pictures"]["tmp_name"][$key];
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"):
     if ($error == UPLOAD_ERR_OK) {
         $tmp_name = $_FILES["pictures"]["tmp_name"][$key];
         $name = $_FILES["pictures"]["name"][$key];
         move_uploaded_file($tmp_name, "uploads/$fuid_$count");
     }
+    else:
+    echo "Sorry, only JPG, JPEG, PNG are allowed.";
     $count++;
     endif;
 }
 else:
 $count=1;
 foreach ($_FILES["pictures"]["error"] as $key => $error) {
-    $check = getimagesize($_FILES["pictures"]["tmp_name"][$key]);
-    if($check !== false):
+    //$check = getimagesize($_FILES["pictures"]["tmp_name"][$key]);
+    $filename = $_FILES["pictures"]["tmp_name"][$key];
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    
+    //if(($check !== false) && (in_array($ext,$allowed)):
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"):
     if ($error == UPLOAD_ERR_OK) {
         $tmp_name = $_FILES["pictures"]["tmp_name"][$key];
         $name = $_FILES["pictures"]["name"][$key];
         move_uploaded_file($tmp_name, "uploads/$fuid"."_"."$count");
     }
+    else:
+    echo "Sorry, only JPG, JPEG, PNG are allowed.";
     $count++;
     endif;
 };
