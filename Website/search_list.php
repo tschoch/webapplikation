@@ -107,7 +107,7 @@ session_start();
                 $column_plz[] = $search['PLZ']; 
                 $column_o_1[] = $search['Offer_1'];
                 $column_o_2[] = $search['Offer_2'];
-                $column_o_3[] = $search['Offer_2'];
+                $column_o_3[] = $search['Offer_3'];
                 }
             
                 $cloumn_counter = $_POST['cloumn_counter'];
