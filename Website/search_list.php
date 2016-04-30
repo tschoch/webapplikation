@@ -17,6 +17,7 @@ session_start();
 		<link href="bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="stylesheet.css" rel="stylesheet">
         
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	    <script src="script.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap" async defer></script>
 	</head>
@@ -97,8 +98,7 @@ session_start();
 					</ul>
 				  </div>
 				</div>	
-			</div>	
-			
+			</div>	            
 			<hr>	
 			<?php
                 while($search = mysql_fetch_array($result)){
@@ -109,8 +109,12 @@ session_start();
                 $column_o_2[] = $search['Offer_2'];
                 $column_o_3[] = $search['Offer_2'];
                 }
+            
+                $cloumn_counter = $_POST['cloumn_counter'];
                 
+                if (empty($cloumn_counter)){
                 $cloumn_counter = 0;
+                }
             
                 $fid    =  $column_fid[$cloumn_counter];
                 $ort    =  $column_city[$cloumn_counter];
@@ -119,8 +123,13 @@ session_start();
                 $o_2    =  $column_o_2[$cloumn_counter];
                 $o_3    =  $column_o_3[$cloumn_counter];
             
+                
+                $pid = $fid;
+                $filename = 'uploads/'.$fid.'_1';
+                if (!file_exists ($filename)){
+                    $pid = "12345";  
+                }
                 if (empty($fid)) {
-                    $fid    =  12345;
                     $ort    =  "Stadt";
                     $plz    =  "PLZ";
                     $o_1    =  "Angebot_1";
@@ -131,24 +140,70 @@ session_start();
 			<div class="row"> 
 				<div class="col-md-6 well">
 					<div class="col-md-6">
-						<h2>Anbieter 1</h2>
+						<h2>Anbieter <?php $cloumn_counter++; echo $cloumn_counter; ?></h2>
 						<p><?php echo $plz; ?> <?php echo $ort; ?></p>
 						<br>
 						<p>spezialisiert auf <?php echo $o_1?>, <?php echo $o_2?>, <?php echo $o_3?></p>
 						<div class="rating">
 							<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
 						</div>
-					</div>
-					
+					</div> 
+
+                    
 					<div class="col-md-6">
 						<br>
 						<br>
 						<br>
-						<img src="uploads/<?php echo $fid; ?>_1" style="width:100%"/>
+						<img id="pic" src="uploads/<?php echo $pid; ?>_1" style="width:100%"/>
+                        
+                        <!--   slideshow  -->
+                           <?php  
+                            $pid = $fid;
+                            $filename_2 = 'uploads/'.$fid.'_2';
+                            $filename_3 = 'uploads/'.$fid.'_3';
+                        
+                            if (file_exists ($filename_2) && !file_exists ($filename_3)){ 
+                                echo "Auf bild Klicken für mehr"
+                            ?>
+                            <script>
+                            var pic = 1;      
+                            $(document).ready(function(){
+                                $("#pic").click(function(){ 
+                                    pic++;
+                                    if(pic>2){
+                                        pic = 1;   
+                                    }
+                                    var pid = <?php echo json_encode($pid); ?>;
+                                    var pfad = "uploads/"+pid +"_"+pic;
+                                    $("#pic").attr('src',pfad);
+                                });
+                            });
+                            </script>
+                        
+                            <?php }elseif(file_exists ($filename_2) && file_exists ($filename_3)){
+                            echo "Auf bild Klicken für mehr"
+                            ?>
+                            <script>
+                            var pic = 1;      
+                            $(document).ready(function(){
+                                $("#pic").click(function(){ 
+                                    pic++;
+                                    if(pic>3){
+                                        pic = 1;   
+                                    }
+                                    var pid = <?php echo json_encode($pid); ?>;
+                                    var pfad = "uploads/"+pid +"_"+pic;
+                                    $("#pic").attr('src',pfad);
+                                });
+                            });
+                            </script>
+
+                        <?php } ?>
+                        
 					</div>
-				</div>
+				</div>   
 				<div class="col-md-6">
-					<table class="table table-striped">
+					<table class="table table-striped" id="tableId">
 						<thead>
 						<tr>
 							<th>Name</th>
@@ -160,26 +215,24 @@ session_start();
 						<tbody>
                             
                         <?php   
-                            
+                            $rowcount = 0;
                             while($row = mysql_fetch_array($results)) {
         
                         ?> 
-                            <tr>
+                            <tr id="<?php echo $rowcount?>" onclick="function()" >
                             <td><?php echo $row['Ffname']?></td>
                             <td><?php echo $row['PLZ']?></td>
                             <td><?php echo $row['City']?></td>
                             <td><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?>,</td>
                             </tr> 
                         <?php
+                            $rowcount++;
                             }
                         ?>
 						</tbody>
 					</table>
 				</div>
 			</div>
-			
-			
-
 		<hr>
 		  <footer>
 			<p>&copy; 2016 Schoch/Mosberger</p>

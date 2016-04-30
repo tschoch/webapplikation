@@ -15,7 +15,8 @@ session_start();
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
-
+      
+    <link href="stylesheet.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
   </head>
@@ -152,7 +153,14 @@ session_start();
 						<div class="col-xs-6">
 							<label class="control-label col-sm-2" for="pic3"></label>
 							<div class="col-sm-10">
-								<input type="file" class="form-control" multiple="" name="pictures[]" id="pic3" >
+								<input type="file" class="form-control" multiple="" name="pictures[]" id="pic3" ><p id="type_check" >
+                                <?php 
+                                    $pic_type = $_SESSION['pic_type'];
+                                    $pic_size = $_SESSION['pic_size'];                            
+                                    if ($pic_type != $pic_size){
+                                    echo "Sorry, only JPG, JPEG, PNG files are allowed."; }
+                                ?>
+                                </p>
 							</div>
 						</div>
 					</div>
