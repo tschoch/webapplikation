@@ -1,4 +1,4 @@
-var $fid;
+var $file_id
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -14,7 +14,7 @@ $(document).ready(function(){
         var $plz = $(this).find("#plz_list").html();
         var $ort = $(this).find("#ort_list").html();
         var $offer = $(this).find("#offer_list").html();   
-        var $file_id = $(this).find("#fid_list").html(); 
+            $file_id = $(this).find("#fid_list").html(); 
         var $pfad = "uploads/"+ $file_id +"_1";
         
         var $place = $plz + " " + $ort;
@@ -34,7 +34,7 @@ $(document).ready(function(){
 var $pic = 2;  
 $(document).ready(function(){
     $("#pic").click(function(){  
-        var $file_id = $("#test").html();
+        //var $file_id = $("#test").html();
         var $pfad = "uploads/"+ $file_id +"_"+$pic;
             $pic++;
             if($pic>3){
@@ -44,10 +44,6 @@ $(document).ready(function(){
         
     });
 });
-
-
-
-
 
 // $(this).css('background', '#aaa')  
     

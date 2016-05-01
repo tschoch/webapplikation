@@ -112,7 +112,6 @@ session_start();
 						</div>
 					</div> 
 
-                    <p id="test" style="display:none;" ></p>
 					<div class="col-md-6">
 						<br>
 						<br>
