@@ -99,107 +99,26 @@ session_start();
 				  </div>
 				</div>	
 			</div>	            
-			<hr>	
-			<?php
-                while($search = mysql_fetch_array($result)){
-                $column_fid[] = $search['Fuid'];
-                $column_city[] = $search['City'];
-                $column_plz[] = $search['PLZ']; 
-                $column_o_1[] = $search['Offer_1'];
-                $column_o_2[] = $search['Offer_2'];
-                $column_o_3[] = $search['Offer_3'];
-                }
-            
-
-    
-                if (empty($cloumn_counter)){
-                $cloumn_counter = 0;
-                }
-            
-                $fid    =  $column_fid[$cloumn_counter];
-                $ort    =  $column_city[$cloumn_counter];
-                $plz    =  $column_plz[$cloumn_counter];
-                $o_1    =  $column_o_1[$cloumn_counter];
-                $o_2    =  $column_o_2[$cloumn_counter];
-                $o_3    =  $column_o_3[$cloumn_counter];
-            
-                
-                $pid = $fid;
-                $filename = 'uploads/'.$fid.'_1';
-                if (!file_exists ($filename)){
-                    $pid = "12345";  
-                }
-                if (empty($fid)) {
-                    $ort    =  "Stadt";
-                    $plz    =  "PLZ";
-                    $o_1    =  "Angebot_1";
-                    $o_2    =  "Angebot_2";
-                    $o_3    =  "Angebot_3";
-                }
-            ?>
+			<hr>	            
 			<div class="row"> 
 				<div class="col-md-6 well">
 					<div class="col-md-6">
-						<h2>Anbieter <?php $cloumn_counter++; echo $cloumn_counter; ?></h2>
-						<p><?php echo $plz; ?> <?php echo $ort; ?></p>
+						<h2 id="anb_visit" >Anbieter </h2>
+						<p id="ort_visit" >PLZ Ort</p>
 						<br>
-						<p>spezialisiert auf <?php echo $o_1?>, <?php echo $o_2?>, <?php echo $o_3?></p>
+						<p id="offer_visit" >spezialisiert auf Angebot_1, Angebot2, Angebot_3</p>
 						<div class="rating">
 							<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
 						</div>
 					</div> 
 
-                    
+                    <p id="test" style="display:none;" ></p>
 					<div class="col-md-6">
 						<br>
 						<br>
 						<br>
-						<img id="pic" src="uploads/<?php echo $pid; ?>_1" style="width:100%"/>
-                        
-                        <!--   slideshow  -->
-                           <?php  
-                            $pid = $fid;
-                            $filename_2 = 'uploads/'.$fid.'_2';
-                            $filename_3 = 'uploads/'.$fid.'_3';
-                        
-                            if (file_exists ($filename_2) && !file_exists ($filename_3)){ 
-                                echo "Auf bild Klicken für mehr"
-                            ?>
-                            <script>
-                            var pic = 1;      
-                            $(document).ready(function(){
-                                $("#pic").click(function(){ 
-                                    pic++;
-                                    if(pic>2){
-                                        pic = 1;   
-                                    }
-                                    var pid = <?php echo json_encode($pid); ?>;
-                                    var pfad = "uploads/"+pid +"_"+pic;
-                                    $("#pic").attr('src',pfad);
-                                });
-                            });
-                            </script>
-                        
-                            <?php }elseif(file_exists ($filename_2) && file_exists ($filename_3)){
-                            echo "Auf bild Klicken für mehr"
-                            ?>
-                            <script>
-                            var pic = 1;      
-                            $(document).ready(function(){
-                                $("#pic").click(function(){ 
-                                    pic++;
-                                    if(pic>3){
-                                        pic = 1;   
-                                    }
-                                    var pid = <?php echo json_encode($pid); ?>;
-                                    var pfad = "uploads/"+pid +"_"+pic;
-                                    $("#pic").attr('src',pfad);
-                                });
-                            });
-                            </script>
-
-                        <?php } ?>
-                        
+						<img id="pic" src="uploads/12345_1" style="width:100%"/>  
+                        <p id="img_label"></p>
 					</div>
 				</div>   
 				<div class="col-md-6">
@@ -215,15 +134,15 @@ session_start();
 						<tbody>
                             
                         <?php   
-                            $rowcount = 0;
-                            while($row = mysql_fetch_array($results)) {
-        
+                            $rowcount = 1;
+                            while($row = mysql_fetch_array($results)) {    
                         ?> 
                             <tr class="table_row" id="<?php echo $rowcount?>" onclick="function()"  >
-                            <td><?php echo $row['Ffname']?></td>
-                            <td><?php echo $row['PLZ']?></td>
-                            <td><?php echo $row['City']?></td>
-                            <td><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?>,</td>
+                            <td id="name_list" ><?php echo $row['Ffname']?></td>
+                            <td id="plz_list" ><?php echo $row['PLZ']?></td>
+                            <td id="ort_list" ><?php echo $row['City']?></td>
+                            <td id="offer_list" ><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?></td>
+                            <td id="fid_list" style="display:none;" ><?php echo $row['Fuid']?></td>    
                             </tr> 
                         <?php
                             $rowcount++;
