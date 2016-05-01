@@ -16,6 +16,7 @@ $(document).ready(function(){
         var $offer = $(this).find("#offer_list").html();   
             $file_id = $(this).find("#fid_list").html(); 
         var $pfad = "uploads/"+ $file_id +"_1";
+        var $pfad_nxt = "uploads/"+ $file_id +"_2";
         
         var $place = $plz + " " + $ort;
         var $angebot = "spezialisiert auf " + $offer;
@@ -26,24 +27,52 @@ $(document).ready(function(){
         $("#offer_visit").html($angebot);  
         $("#test").html($file_id); 
         $("#pic").attr('src',$pfad);
-        $("#img_label").html("klick für mehr bilder"); 
         
+        $.ajax({
+            type: 'HEAD',
+            url: $pfad_nxt,
+            success: function(){
+                $("#img_label").html("klick für mehr bilder"); 
+            },
+            error: function(){
+                $("#img_label").html(" "); 
+            }
+        }); 
     }); 
 });
 
 var $pic = 2;  
 $(document).ready(function(){
     $("#pic").click(function(){  
-        //var $file_id = $("#test").html();
-        var $pfad = "uploads/"+ $file_id +"_"+$pic;
-            $pic++;
-            if($pic>3){
-                $pic = 1;   
-            } 
-        $(this).attr('src',$pfad);  
         
+        var $pfad = "uploads/"+ $file_id +"_"+$pic;
+        var $pfad_bgn = "uploads/"+ $file_id +"_1";
+        
+        if($file_id > 10){        
+        $.ajax({
+            type: 'HEAD',
+            url: $pfad,
+            success: function(){
+                $pic++;
+                if($pic>3){
+                    $pic = 1;   
+                } 
+                $("#pic").attr('src',$pfad);     
+                $("#img_label").html("klick für mehr bilder");  
+            },
+            error: function(){
+                $pic = 2;
+                $("#pic").attr('src',$pfad_bgn);
+            }
+        });
+        }  
     });
 });
 
-// $(this).css('background', '#aaa')  
-    
+// $(this).css('background', '#aaa')    
+
+
+
+
+
+
