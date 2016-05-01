@@ -2,8 +2,7 @@
 
 $row_count = $_POST['row_count'];
 
-echo ($row_count); 
-
+echo "reihe: ". ($row_count); 
 
 
 ?>
