@@ -116,7 +116,7 @@ session_start();
 						<br>
 						<br>
 						<br>
-						<img id="pic" src="uploads/12345_1" style="width:100%"/>  
+						<img id="pic" src="uploads/10_1" style="width:100%"/>  
                         <p id="img_label"></p>
 					</div>
 				</div>   
