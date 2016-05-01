@@ -6,8 +6,26 @@ function initMap() {
     });
 }
 
-$( function() {
-  $('tr').click( function() {
-    $(this).css('background', '#aaa')
-  } );
-} );
+
+$(document).ready(function(){
+    $(".table_row").click(function() {
+      
+        var row_count = $(this).attr('id');
+
+        $.ajax({
+             type: "POST",
+             url: "ajax.php",
+             data: { row_count : row_count },
+             success:function(data){
+                     alert(data);
+              }
+           });
+
+        console.log(row_count);
+            
+    });
+});
+
+
+// $(this).css('background', '#aaa')  
+    

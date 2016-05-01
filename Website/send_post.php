@@ -85,6 +85,7 @@ mysql_query($query_place);
 $count=1;
 $pic_type = 0;
 $pic_size = 0;
+$big_pic  = 0;
 
 
 foreach ($_FILES["pictures"]["error"] as $key => $error) { 
@@ -110,6 +111,7 @@ if(isset($_POST["submit"])) {
 // Check file size
 if ($_FILES["pictures"]["size"][$key] > 500000) {
     echo "Sorry, your file is too large.";
+    $big_pic++;
     $uploadOk = 0;
 }
 // Allow certain file formats
@@ -122,8 +124,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 if ($_FILES["pictures"]["size"][$key] == 0) {
     $pic_size++;
 }
-    
-    
+      
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
@@ -141,6 +142,7 @@ if ($uploadOk == 0) {
     $count++;
     $_SESSION['pic_type'] = $pic_type;
     $_SESSION['pic_size'] = $pic_size;
+    $_SESSION['big_pic']  = $big_pic;
 }
              
 header("Location: edit.php");

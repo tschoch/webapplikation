@@ -110,8 +110,8 @@ session_start();
                 $column_o_3[] = $search['Offer_3'];
                 }
             
-                $cloumn_counter = $_POST['cloumn_counter'];
-                
+
+    
                 if (empty($cloumn_counter)){
                 $cloumn_counter = 0;
                 }
@@ -219,7 +219,7 @@ session_start();
                             while($row = mysql_fetch_array($results)) {
         
                         ?> 
-                            <tr id="<?php echo $rowcount?>" onclick="function()" >
+                            <tr class="table_row" id="<?php echo $rowcount?>" onclick="function()"  >
                             <td><?php echo $row['Ffname']?></td>
                             <td><?php echo $row['PLZ']?></td>
                             <td><?php echo $row['City']?></td>

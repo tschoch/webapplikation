@@ -156,9 +156,13 @@ session_start();
 								<input type="file" class="form-control" multiple="" name="pictures[]" id="pic3" ><p id="type_check" >
                                 <?php 
                                     $pic_type = $_SESSION['pic_type'];
-                                    $pic_size = $_SESSION['pic_size'];                            
+                                    $pic_size = $_SESSION['pic_size'];    
+                                    $big_pic = $_SESSION['big_pic']; 
                                     if ($pic_type != $pic_size){
-                                    echo "Sorry, only JPG, JPEG, PNG files are allowed."; }
+                                    echo "Sorry, only JPG, JPEG, PNG files are allowed."; 
+                                }elseif($big_pic > 0){
+                                    echo "Bild ist zu gross"; 
+                                }
                                 ?>
                                 </p>
 							</div>
