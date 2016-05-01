@@ -2,7 +2,7 @@
 
 $row_count = $_POST['row_count'];
 
-echo ($users); 
+echo ($row_count); 
 
 
 
