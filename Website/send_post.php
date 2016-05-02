@@ -86,6 +86,7 @@ $count=1;
 $pic_type = 0;
 $pic_size = 0;
 $big_pic  = 0;
+$pic_ok    = 0;
 
 
 foreach ($_FILES["pictures"]["error"] as $key => $error) { 
@@ -135,6 +136,7 @@ if ($uploadOk == 0) {
     
     if (move_uploaded_file($tmp_name, "uploads/$fuid"."_"."$count")) {
         echo "The file has been uploaded.";
+        $pic_ok = 1;
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
@@ -143,6 +145,7 @@ if ($uploadOk == 0) {
     $_SESSION['pic_type'] = $pic_type;
     $_SESSION['pic_size'] = $pic_size;
     $_SESSION['big_pic']  = $big_pic;
+    $_SESSION['pic_ok'] =   $pic_ok;
 }
              
 header("Location: edit.php");

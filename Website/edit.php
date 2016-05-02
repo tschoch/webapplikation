@@ -157,13 +157,21 @@ session_start();
                                 <?php 
                                     $pic_type = $_SESSION['pic_type'];
                                     $pic_size = $_SESSION['pic_size'];    
-                                    $big_pic = $_SESSION['big_pic']; 
-                                    if ($pic_type != $pic_size){
-                                    echo "Sorry, only JPG, JPEG, PNG files are allowed."; 
-                                }elseif($big_pic > 0){
+                                    $big_pic =  $_SESSION['big_pic']; 
+                                    $pic_ok  =  $_SESSION['pic_ok'];
+                                    if (($pic_type != $pic_size) && ($big_pic > 0)){
+                                        echo "only JPG, JPEG, PNG files are allowed. Bild zu gross (max. 500kb)"; 
+                                    }elseif($big_pic > 0){
                                     echo "Bild ist zu gross"; 
-                                }
+                                }elseif($pic_type != $pic_size){
+                                    echo "Sorry, only JPG, JPEG, PNG files are allowed."; 
+                                    }; 
                                 ?>
+                                </p>
+                                <p id="upload_ok">
+                                    <?php if(($pic_ok==1) && ($pic_type == $pic_size) && ($big_pic == 0)){
+                                         echo "Upload erfolgreich";
+                                    }; ?>
                                 </p>
 							</div>
 						</div>
