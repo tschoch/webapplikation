@@ -1,3 +1,4 @@
+var $check = 2;
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
@@ -43,10 +44,12 @@ $(document).ready(function(){
             url: $pfad,
             success: function(){
                 $("#pic").attr('src',$pfad); 
+                $check = 2;
             },
             error: function(){
-                $("#pic").attr('src','uploads/10_1'); 
-              
+                $("#pic").attr('src','uploads/10_1');
+                $check = 1;
+   
             }
         }); 
         
@@ -73,7 +76,7 @@ $(document).ready(function(){
         var $pfad = "uploads/"+ $file_id +"_"+$pic;
         var $pfad_bgn = "uploads/"+ $file_id +"_1";
         
-        if($file_id > 10){        
+        if($file_id > 10 && $check!=1){        
         $.ajax({
             type: 'HEAD',
             url: $pfad,
