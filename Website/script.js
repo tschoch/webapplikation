@@ -28,6 +28,21 @@ $(document).ready(function(){
         $("#test").html($file_id); 
         $("#pic").attr('src',$pfad);
         
+        
+        $.ajax({
+            type: 'HEAD',
+            url: $pfad,
+            success: function(){
+                $("#pic").attr('src',$pfad); 
+            },
+            error: function(){
+                $("#pic").attr('src','uploads/10_1'); 
+              
+            }
+        }); 
+        
+        
+        
         $.ajax({
             type: 'HEAD',
             url: $pfad_nxt,
