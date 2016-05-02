@@ -34,3 +34,14 @@
 #upload_ok{
     color:green;
 }
+.selectRow_odd :nth-of-type(odd){
+    background:#aaa;
+}
+.selectRow :nth-of-type(even){
+    background:#aaa;
+}
+#table_limit{
+    max-height: 230px;
+    overflow-y:scroll; 
+}
+

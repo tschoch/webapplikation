@@ -5,17 +5,17 @@ function initMap() {
     });
 }
 
+//colorchange of avtive row
 $(document).ready(function(){
-    $(".table_row").hover(function(){
-        $(this).addClass('hover');
-        $color = $(this).css('background');
-        $(this).css('background', '#aaa');
-        }, function(){
-        $(this).removeClass('hover');
-         $(this).css("background", $color);
+    $(".table_row").click(function(){
+        $(".table_row").not(this).removeClass('selectRow');
+        $(".table_row").not(this).removeClass('selectRow_odd');
+        $(this).addClass('selectRow'); 
+        $(this).addClass('selectRow_odd');
     });
 });
 
+//set elements of advise
 $(document).ready(function(){
     $(".table_row").click(function() {
       
@@ -65,6 +65,7 @@ $(document).ready(function(){
     }); 
 });
 
+//picture gallerie
 var $pic = 2;  
 $(document).ready(function(){
     $("#pic").click(function(){  
@@ -92,11 +93,3 @@ $(document).ready(function(){
         }  
     });
 });
-
-// $(this).css('background', '#aaa')    
-
-
-
-
-
-
