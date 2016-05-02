@@ -1,10 +1,20 @@
-
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
         center: {lat: 46.8209, lng: 8.4078}
     });
 }
+
+$(document).ready(function(){
+    $(".table_row").hover(function(){
+        $(this).addClass('hover');
+        $color = $(this).css('background');
+        $(this).css('background', '#aaa');
+        }, function(){
+        $(this).removeClass('hover');
+         $(this).css("background", $color);
+    });
+});
 
 $(document).ready(function(){
     $(".table_row").click(function() {
