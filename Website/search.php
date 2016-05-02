@@ -10,7 +10,10 @@
     else:
     $results = NULL;  
     endif;
+
+    if($results != NULL){
  ?>
+
 <script>
 
 //set elements of first advise
@@ -64,3 +67,4 @@ $(document).ready(function(){
 
 </script>
 
+<?php } ?>
