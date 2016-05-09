@@ -1,11 +1,29 @@
 var $check = 2;
 var map;
+var marker;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
         center: {lat: 46.8209, lng: 8.4078}
     });
-                       
+	
+	$('#hiddntble > tbody > tr').each(function() {
+		var $lat = $(this).find("#lat").html();
+		var $lng = $(this).find("#lng").html();
+		var $name = $(this).find("#name_list").html();
+		var $id = $(this).find("#fid_list").html();
+		var $latlng = new google.maps.LatLng(parseFloat($lat),parseFloat($lng));
+		marker = new google.maps.Marker({
+			position: $latlng,
+			title: $name,
+			id: $id,
+			map: map
+		});
+		 google.maps.event.addListener(marker, 'click', function (element) { 
+        alert(this.id) });
+
+	});
+
 }
 
 //colorchange of avtive row
@@ -17,22 +35,7 @@ $(document).ready(function(){
         $(this).addClass('selectRow_odd');
     });
 });
-
-$(document).ready(function(){
-	$('#hiddntble > tbody > tr').each(function() {
-		var $lat = $(this).find("#lat").html();
-		var $lng = $(this).find("#lng").html();
-		var $name = $(this).find("#name").html();
-		var $latlng = new google.maps.LatLng(parseFloat($lat),parseFloat($lng));
-		var marker = new google.maps.Marker({
-			position: $latlng,
-			title:$name
-		});
-	
-		marker.setMap(map);
-	});
-});
-
+  
 //set elements of advise
 $(document).ready(function(){
     $(".table_row").click(function() {
