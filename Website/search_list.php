@@ -93,7 +93,7 @@ session_start();
 				  <div class="right col-xs-12">
 					<ul class="nav nav-pills">
 						<li><a href="search_map.php">Map</a></li>
-						<li class="active"><a href="search_list.html">Liste</a></li>
+						<li class="active"><a href="search_list.php">Liste</a></li>
 
 					</ul>
 				  </div>

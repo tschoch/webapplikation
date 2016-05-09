@@ -17,13 +17,13 @@ session_start();
 		<link href="bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="stylesheet.css" rel="stylesheet">
         
-	    <script src="script.php"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	    <script src="script.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap" async defer></script>
-        
 	</head>
 
 	<body>
-         <?php if ($_SESSION['FBID']): ?>
+        <?php if ($_SESSION['FBID']): ?>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 		  <div class="container">
 			<div class="navbar-header">
@@ -54,20 +54,19 @@ session_start();
 		  </div>
 		</div>
 
-
+        
          <?php
         require '../phplogin/dbconfig.php';
         require 'search.php';
-        echo "$result";
-
-     
         ?>
-
+        
+        
 		<div class="container">
 		  <!-- Example row of columns -->
 		  <div class="row">
+            <form class="form-horizontal" action="" method="post">
 			<div class="col-md-12">
-				<form class="form-horizontal" action="" method="post" id="subb">
+				<form class="form-horizontal">
 			<div class="form-group">
 				  <div class="col-xs-4">
 					  <input class="form-control" id="search" name="search" placeholder="Suchbegriff"  type="text">
@@ -81,78 +80,88 @@ session_start();
 			  </div>
 			  <div class="form-group">
 				  <div class="col-xs-12">
-					<button class="btn btn-primary pull-right" onclick="refresh(); return false;">Suche</button>
+					<button type="submit" class="btn btn-primary pull-right">Suche</button>
 				  </div>
 			  </div>	
 		  </form>
 			</div>
+            </form>    
 		  </div>
 		<hr>
 			<div class="row"> 
 				 <div class="form-group">
 				  <div class="right col-xs-12">
 					<ul class="nav nav-pills">
-						<li class="active"><a href="search_map.html">Map</a></li>
+						<li class="active"><a href="search_map.php">Map</a></li>
 						<li><a href="search_list.php">Liste</a></li>
+
 					</ul>
 				  </div>
 				</div>	
-			</div>	
-			
-			<hr>	
-			
+			</div>	            
+			<hr>	            
 			<div class="row"> 
 				<div class="col-md-6 well">
 					<div class="col-md-6">
-						<h2>Anbieter 1</h2>
-						<p>9320 Arbon</p>
+						<h2 id="anb_visit" >Anbieter </h2>
+						<p id="ort_visit" >PLZ Ort</p>
 						<br>
-						<p>spezialisiert auf innenausbau</p>
+						<p id="offer_visit" >spezialisiert auf Angebot_1, Angebot2, Angebot_3</p>
 						<div class="rating">
 							<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
 						</div>
-					</div>
-					
+					</div> 
+
 					<div class="col-md-6">
 						<br>
 						<br>
 						<br>
-						<img src="bild1.jpg" style="width:100%"/>
+						<img id="pic" src="uploads/10_1" style="width:100%"/>  
+                        <p id="img_label"></p>
 					</div>
-				</div>
-				
+				</div> 
 				<div class="col-md-6">
 					 <div id="map"></div>
-				</div>
-			</div>
-		      
+				</div>				
+				<div class="col-md-6" style="display:none">
+					<table class="table table-striped" id="hiddntble">
+						<thead>
+						<tr>
+							<th>Name</th>
+							<th>PLZ</th>
+							<th>Ort</th>
+							<th>Angebot</th>
+						</tr>
+						</thead>
+						<tbody>
+                            
                         <?php   
-                            
-                            while($row = mysql_fetch_array($results)) {
-                            
-                        ?>  
-
-		<form class="pager">
-                    <input type="hidden" id="fname" name="fname" value= "<?php echo $row['Ffname']?>" />
-                    <input type="hidden" id="plz" name="plz" value="<?php echo $row['PLZ']?>" />
-		    <input type="hidden" id="street" name="street" value="<?php echo $row['Street']?>" />
-		    <input type="hidden" id="nr" name="nr" value="<?php echo $row['Nr']?>" />
-                    <input type="hidden" id="city" name="city" value="<?php echo $row['City']?>" />
-                    <input type="hidden" id="offer" name="offer" value="<?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?>" />
-                </form>	
-	
-
-  			<?php
+                            $rowcount = 1;
+                            while($row = mysql_fetch_array($results)) {    
+                        ?> 
+                            <tr class="table_row" id="<?php echo $rowcount?>" >
+                            <td id="name_list" ><?php echo $row['Ffname']?></td>
+                            <td id="plz_list" ><?php echo $row['PLZ']?></td>
+                            <td id="ort_list" ><?php echo $row['City']?></td>
+                            <td id="offer_list" ><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?></td>
+                            <td id="fid_list" ><?php echo $row['Fuid']?></td>   
+							<td id="lat" ><?php echo $row['lat']?></td>    
+							<td id="lng" ><?php echo $row['lng']?></td>    							
+                            </tr> 
+                        <?php
+                            $rowcount++;
                             }
                         ?>
-
-
+						</tbody>
+					</table>
+				</div>
+			</div>
 		<hr>
 		  <footer>
 			<p>&copy; 2016 Schoch/Mosberger</p>
 		  </footer>
+            
 		</div> <!-- /container -->
-
         <?php else: ?>   
        <!-- Before login --> 
 		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -182,18 +191,17 @@ session_start();
 		</div>
         <div class="container" style="text-align: center">
             <h2>Not Connected</h2>
-            <h2>Login with Facebook</h2> 
+            <h2>Login with Facebook</h2>
             <br>
             <input type="image" style="height:40px;width:160px;" src="fb_button.png" onclick='location.href=" ../phplogin/fbconfig.php"'/>
         </div>
-        <?php endif ?>  
-        
+        <?php endif ?>   
+
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-		<script src="bootstrap-3.3.6/dist/js/bootstrap.min.js"></script>
-		
+		<script src="bootstrap-3.3.6/dist/js/bootstrap.min.js"></script>        
 	</body>
 </html>

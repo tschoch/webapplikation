@@ -10,7 +10,56 @@ $nr     = $_POST['nr'];
 $plz    = $_POST['plz'];
 $place  = $_POST['place'];
 $fuid   = $_SESSION['FBID'];
-    
+$address= $str.",".$nr.",".$place;
+
+     // function to geocode address, it will return false if unable to geocode address
+    function geocode($address){
+
+        // url encode the address
+        $address = urlencode($address);
+
+        // google map geocode api url
+        $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address={$address}";
+
+        // get the json response
+        $resp_json = file_get_contents($url);
+
+        // decode the json
+        $resp = json_decode($resp_json, true);
+
+        // response status will be 'OK', if able to geocode given address 
+        if($resp['status']='OK'){
+
+            // get the important data
+            $lati = $resp['results'][0]['geometry']['location']['lat'];
+            $longi = $resp['results'][0]['geometry']['location']['lng'];
+            $formatted_address = $resp['results'][0]['formatted_address'];
+
+            // verify if data is complete
+            if($lati && $longi && $formatted_address){
+
+                // put the data in the array
+                $data_arr = array();            
+
+                array_push(
+                    $data_arr, 
+                        $lati, 
+                        $longi, 
+                        $formatted_address
+                    );
+
+                return $data_arr;
+
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+$data_arr = geocode($address);
 
 $check_offer1 = mysql_query("SELECT OFFER_1 FROM Users WHERE Fuid='$fuid'");
 $check_offer1 = mysql_num_rows($check_offer1);
@@ -80,6 +129,26 @@ mysql_query($query_place);
 } else {
 $query_place= "UPDATE Users SET City='$place' WHERE Fuid='$fuid'";  
 mysql_query($query_place);    
+}
+
+$check_lat = mysql_query("SELECT lat FROM Users WHERE Fuid='$fuid'");
+$check_lat = mysql_num_rows($check_lat);
+if (empty($check_lat)) {
+$query_lat = "INSERT INTO Users (lat) VALUES ('$data_arr[0]')where Fuid='$fuid'";   
+mysql_query($query_lat);
+} else {
+$query_lat= "UPDATE Users SET lat='$data_arr[0]' WHERE Fuid='$fuid'";  
+mysql_query($query_lat);    
+}
+
+$check_lng = mysql_query("SELECT lng FROM Users WHERE Fuid='$fuid'");
+$check_lng = mysql_num_rows($check_lng);
+if (empty($check_lng)) {
+$query_lng = "INSERT INTO Users (lng) VALUES ('$data_arr[1]')where Fuid='$fuid'";   
+mysql_query($query_lng);
+} else {
+$query_lng= "UPDATE Users SET lng='$data_arr[1]' WHERE Fuid='$fuid'";  
+mysql_query($query_lng);    
 }
 
 $count=1;

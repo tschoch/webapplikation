@@ -1,9 +1,11 @@
 var $check = 2;
+var map;
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
         center: {lat: 46.8209, lng: 8.4078}
     });
+                       
 }
 
 //colorchange of avtive row
@@ -14,6 +16,21 @@ $(document).ready(function(){
         $(this).addClass('selectRow'); 
         $(this).addClass('selectRow_odd');
     });
+});
+
+$(document).ready(function(){
+	$('#hiddntble > tbody > tr').each(function() {
+		var $lat = $(this).find("#lat").html();
+		var $lng = $(this).find("#lng").html();
+		var $name = $(this).find("#name").html();
+		var $latlng = new google.maps.LatLng(parseFloat($lat),parseFloat($lng));
+		var marker = new google.maps.Marker({
+			position: $latlng,
+			title:$name
+		});
+	
+		marker.setMap(map);
+	});
 });
 
 //set elements of advise
