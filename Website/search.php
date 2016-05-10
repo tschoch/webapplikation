@@ -21,6 +21,7 @@ $(document).ready(function(){
         var $row_count = 1;
         var $plz = $("#1").find("#plz_list").html();
         var $ort = $("#1").find("#ort_list").html();
+		var $name = $("#1").find("#name_list").html();
         var $offer = $("#1").find("#offer_list").html();   
             $file_id = $("#1").find("#fid_list").html(); 
         var $pfad = "uploads/"+ $file_id +"_1";
@@ -30,7 +31,7 @@ $(document).ready(function(){
         var $angebot = "spezialisiert auf " + $offer;
         var $anbieter = "Anbieter " + $row_count;
         
-        $("#anb_visit").html($anbieter);
+        $("#anb_visit").html($name);
         $("#ort_visit").html($place);
         $("#offer_visit").html($angebot);  
         $("#test").html($file_id); 

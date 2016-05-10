@@ -20,11 +20,65 @@ function initMap() {
 			map: map
 		});
 		 google.maps.event.addListener(marker, 'click', function (element) { 
-        alert(this.id) });
+			var $id= this.id;
+			$('#hiddntble > tbody > tr > td ').each(function(element) {
+				var $bla = $(this).html();
+				if($id == $bla){
+					var $tblerow = this.parentNode; 
+					//console.log($tblerow);
+					//console.log($tblerow.childNodes[9].innerHTML);
+					var $row_count = $tblerow.id;
+					var $plz = $tblerow.childNodes[3].innerHTML;
+					var $name = $tblerow.childNodes[1].innerHTML;
+					var $ort = $tblerow.childNodes[5].innerHTML;
+					var $offer = $tblerow.childNodes[7].innerHTML;  
+						$file_id = $tblerow.childNodes[9].innerHTML;  
+					var $pfad = "uploads/"+ $file_id +"_1";
+					var $pfad_nxt = "uploads/"+ $file_id +"_2";
+					
+					var $place = $plz + " " + $ort;
+					var $angebot = "spezialisiert auf " + $offer;
+					
+					$("#anb_visit").html($name);
+					$("#ort_visit").html($place);
+					$("#offer_visit").html($angebot);  
+					$("#test").html($file_id); 
+					$("#pic").attr('src',$pfad);
+					
+					
+					$.ajax({
+						type: 'HEAD',
+						url: $pfad,
+						success: function(){
+							$("#pic").attr('src',$pfad); 
+							$check = 2;
+						},
+						error: function(){
+							$("#pic").attr('src','uploads/10_1');
+							$check = 1;
+			   
+						}
+					}); 
+					
+					
+					
+					$.ajax({
+						type: 'HEAD',
+						url: $pfad_nxt,
+						success: function(){
+							$("#img_label").html("klick für mehr bilder"); 
+						},
+						error: function(){
+							$("#img_label").html(" "); 
+						}
+					}); 
+							}
+							
 
-	});
-
-}
+						});
+					});
+				});
+			}
 
 //colorchange of avtive row
 $(document).ready(function(){
@@ -39,10 +93,10 @@ $(document).ready(function(){
 //set elements of advise
 $(document).ready(function(){
     $(".table_row").click(function() {
-      
         var $row_count = $(this).attr('id');
         var $plz = $(this).find("#plz_list").html();
         var $ort = $(this).find("#ort_list").html();
+		var $name = $(this).find("#name_list").html();
         var $offer = $(this).find("#offer_list").html();   
             $file_id = $(this).find("#fid_list").html(); 
         var $pfad = "uploads/"+ $file_id +"_1";
@@ -50,9 +104,8 @@ $(document).ready(function(){
         
         var $place = $plz + " " + $ort;
         var $angebot = "spezialisiert auf " + $offer;
-        var $anbieter = "Anbieter " + $row_count;
         
-        $("#anb_visit").html($anbieter);
+        $("#anb_visit").html($name);
         $("#ort_visit").html($place);
         $("#offer_visit").html($angebot);  
         $("#test").html($file_id); 
