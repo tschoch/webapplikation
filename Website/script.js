@@ -80,6 +80,22 @@ function initMap() {
 				});
 			}
 
+
+//bewertung
+$(document).ready(function(){
+    
+        var $name = localStorage.getItem('name');
+        var $offer = localStorage.getItem('offer');    
+        var $res = $offer.split(",");
+            
+        //bewertung
+        $("#anbieter_bewert").html("Anbieter: " + $name);
+        $("#drdwn_o_1").html($res[0]);
+        $("#drdwn_o_2").html($res[1]);
+        $("#drdwn_o_3").html($res[2]);
+
+});
+
 //colorchange of avtive row
 $(document).ready(function(){
     $(".table_row").click(function(){
@@ -110,6 +126,10 @@ $(document).ready(function(){
         $("#offer_visit").html($angebot);  
         $("#test").html($file_id); 
         $("#pic").attr('src',$pfad);
+        
+        
+        localStorage.setItem('offer',$offer);
+        localStorage.setItem('name',$name);
         
         
         $.ajax({

@@ -119,6 +119,12 @@ session_start();
 						<img id="pic" src="uploads/10_1" style="width:100%"/>  
                         <p id="img_label"></p>
 					</div>
+                    
+                <div class="form-group">
+				 <button type="button" id="bewert_button" class="btn btn-primary" onclick='location.href="bewerten.php"'>Bewerten</button>
+				</div>
+                    
+                    
 				</div>   
 				<div class="col-md-6">
 					<table class="table table-striped" id="tableId">
