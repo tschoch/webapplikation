@@ -1,6 +1,7 @@
 var $check = 2;
 var map;
 var marker;
+localStorage.setItem('bewert_check',0);
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
@@ -124,6 +125,7 @@ $(document).ready(function(){
         
         var $place = $plz + " " + $ort;
         var $angebot = "spezialisiert auf " + $offer;
+        localStorage.setItem('bewert_check',1);
         
         $("#anb_visit").html($name);
         $("#ort_visit").html($place);

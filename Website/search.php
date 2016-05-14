@@ -39,6 +39,7 @@ $(document).ready(function(){
     
         localStorage.setItem('offer',$offer);
         localStorage.setItem('name',$name);
+        localStorage.setItem('bewert_check',1);
         
         $.ajax({
             type: 'HEAD',

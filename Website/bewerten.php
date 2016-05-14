@@ -2,6 +2,13 @@
 session_start(); 
 ?>
 <!DOCTYPE html>
+<script>
+if( localStorage.getItem('bewert_check') == 0){
+ location.href="search_list.php";
+    alert('Zuerst ein Anbieter anwählen');
+    
+}
+</script>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
