@@ -85,8 +85,12 @@ function initMap() {
 $(document).ready(function(){
     
         var $name = localStorage.getItem('name');
-        var $offer = localStorage.getItem('offer');    
-        var $res = $offer.split(",");
+        var $offer_bewert = localStorage.getItem('offer');   
+    
+        if($offer_bewert == null){
+            var $offer_bewert = "Angebot__1, Angebot_2, Angebot_3";
+        }
+        var $res = $offer_bewert.split(",");
             
         //bewertung
         $("#anbieter_bewert").html("Anbieter: " + $name);
