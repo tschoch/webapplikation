@@ -46,6 +46,7 @@ if( localStorage.getItem('bewert_check') == 0){
 			<div id="navbar" class="navbar-collapse collapse">
 			  <form class="navbar-form navbar-right">
 				<div class="form-group">
+                <button type="button" class="btn btn-primary" onclick='location.href="search_list.php"'>Search</button>
 				 <button type="button" class="btn btn-primary" onclick='location.href="../phplogin/logout.php"'>Logout</button>
 				</div>
 			  </form>
@@ -63,10 +64,10 @@ if( localStorage.getItem('bewert_check') == 0){
         
         <div class="container">  
             <div class="row">
-                <form class="form-horizontal" action="score.php" method="post">
+                <form class="form-horizontal" action="send_post_bewertung.php" method="post">
                      <div class="form-group">
+                    <input type="hidden" value="somhing" name="anbieter_bewert_h" id="anbieter_bewert_h" />
                         <p id="anbieter_bewert">Anbieter-X</p>
-                         
                          <div class="dropdown">
                           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dienstleistung
                           <span class="caret"></span></button>
@@ -83,9 +84,6 @@ if( localStorage.getItem('bewert_check') == 0){
                          <br>
                          <br>  
                         <button type="submit" class="btn btn-primary">bewerten</button>
-                         <br>
-                         <br>
-                        <button type="button" class="btn btn-primary" onclick='location.href="search_list.php"'>zurück zur suche</button>
                 </form> 
             </div>    
         </div>     

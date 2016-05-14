@@ -95,6 +95,7 @@ $(document).ready(function(){
             
         //bewertung
         $("#anbieter_bewert").html("Anbieter: " + $name);
+        $("#anbieter_bewert_h").val($name);
         $("#drdwn_o_1").html($res[0]);
         $("#drdwn_o_2").html($res[1]);
         $("#drdwn_o_3").html($res[2]);
