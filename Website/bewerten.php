@@ -67,6 +67,7 @@ if( localStorage.getItem('bewert_check') == 0){
                 <form class="form-horizontal" action="send_post_bewertung.php" method="post">
                      <div class="form-group">
                     <input type="hidden" value="somhing" name="anbieter_bewert_h" id="anbieter_bewert_h" />
+                    <input type="hidden" value="somhing" name="anbieter_id_bewert_h" id="anbieter_id_bewert_h" />     
                         <p id="anbieter_bewert">Anbieter-X</p>
                          <div class="dropdown">
                           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dienstleistung
@@ -80,14 +81,13 @@ if( localStorage.getItem('bewert_check') == 0){
                         </div>
                         <br>
                          <br> 
-                        <input id="range" name="range" placeholder="1-5"  type="text">/5
+                        <input id="range" name="range" placeholder="1-5" type="text" >/5
                          <br>
                          <br>  
                         <button type="submit" class="btn btn-primary">bewerten</button>
                 </form> 
             </div>    
         </div>     
-             
              
              
              

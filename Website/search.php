@@ -40,6 +40,7 @@ $(document).ready(function(){
         localStorage.setItem('offer',$offer);
         localStorage.setItem('name',$name);
         localStorage.setItem('bewert_check',1);
+        localStorage.setItem('fid_anbieter',$file_id);
         
         $.ajax({
             type: 'HEAD',
@@ -75,9 +76,12 @@ $(document).ready(function(){
         var $name = localStorage.getItem('name');
         var $offer = localStorage.getItem('offer');    
         var $res = $offer.split(",");
+        var $fid_anbieter = localStorage.getItem('fid_anbieter');
             
         //bewertung
         $("#anbieter_bewert").html("Anbieter: " + $name);
+         $("#anbieter_bewert_h").val($name);
+        $("#anbieter_id_bewert_h").val($fid_anbieter);
         $("#drdwn_o_1").html($res[0]);
         $("#drdwn_o_2").html($res[1]);
         $("#drdwn_o_3").html($res[2]);

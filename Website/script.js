@@ -87,6 +87,7 @@ $(document).ready(function(){
     
         var $name = localStorage.getItem('name');
         var $offer_bewert = localStorage.getItem('offer');   
+        var $fid_anbieter = localStorage.getItem('fid_anbieter');
     
         if($offer_bewert == null){
             var $offer_bewert = "Angebot__1, Angebot_2, Angebot_3";
@@ -96,11 +97,13 @@ $(document).ready(function(){
         //bewertung
         $("#anbieter_bewert").html("Anbieter: " + $name);
         $("#anbieter_bewert_h").val($name);
+        $("#anbieter_id_bewert_h").val($fid_anbieter);
         $("#drdwn_o_1").html($res[0]);
         $("#drdwn_o_2").html($res[1]);
         $("#drdwn_o_3").html($res[2]);
 
 });
+
 
 //colorchange of avtive row
 $(document).ready(function(){
@@ -128,6 +131,7 @@ $(document).ready(function(){
         var $angebot = "spezialisiert auf " + $offer;
         localStorage.setItem('bewert_check',1);
         
+        
         $("#anb_visit").html($name);
         $("#ort_visit").html($place);
         $("#offer_visit").html($angebot);  
@@ -137,7 +141,7 @@ $(document).ready(function(){
         
         localStorage.setItem('offer',$offer);
         localStorage.setItem('name',$name);
-        
+        localStorage.setItem('fid_anbieter',$file_id);
         
         $.ajax({
             type: 'HEAD',
