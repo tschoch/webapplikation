@@ -26,6 +26,7 @@ if( localStorage.getItem('bewert_check') == 0){
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	    <script src="script.js"></script>
+        <script>localStorage.setItem('bewert_check',1); </script>
 		<script src="https://maps.googleapis.com/maps/api/js key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap" async defer></script>
 	</head>
 
@@ -70,18 +71,27 @@ if( localStorage.getItem('bewert_check') == 0){
                     <input type="hidden" value="somhing" name="anbieter_id_bewert_h" id="anbieter_id_bewert_h" />     
                         <p id="anbieter_bewert">Anbieter-X</p>
                          <div class="dropdown">
-                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dienstleistung
+                          <button class="btn btn-primary dropdown-toggle" type="button" id="drpdwn" data-toggle="dropdown">Dienstleistung
                           <span class="caret"></span></button>
                           <ul class="dropdown-menu">
-                            <li id="drdwn_o_1"><a href="#">Dienstleistung_1</a></li>
-                            <li id="drdwn_o_2"><a href="#">Dienstleistung_2</a></li>
-                            <li id="drdwn_o_3"><a href="#">Dienstleistung_3</a></li>
+                            <li ><a id="drdwn_o_1" href="#">Dienstleistung_1</a></li>
+                            <li ><a id="drdwn_o_2" href="#">Dienstleistung_2</a></li>
+                            <li ><a id="drdwn_o_3" href="#">Dienstleistung_3</a></li>
                           </ul>
                             <p id="bewert_fid" style="display:none;"></p> 
                         </div>
+                        <input type="hidden" value="offer_bewert" name="offer_bewert" id="offer_bewert"/>     
                         <br>
                          <br> 
                         <input id="range" name="range" placeholder="1-5" type="text" >/5
+                         
+                         <p id="rate_check" >
+                         <?php 
+                         if ($_SESSION['rate_check'] == 1){  
+                         echo"Bewertung muss zwischen 1 und 5 sein";
+                         }
+                         ?>
+                        </p>     
                          <br>
                          <br>  
                         <button type="submit" class="btn btn-primary">bewerten</button>

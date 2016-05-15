@@ -31,6 +31,11 @@
 #type_check{
     color:red;
 }
+
+#rate_check{
+    color:red;
+}
+
 #upload_ok{
     color:green;
 }
@@ -40,8 +45,9 @@
 .selectRow :nth-of-type(even){
     background:#aaa;
 }
-#table_limit{
-    max-height: 230px;
+
+#table_height{
+    max-height: 250px;
     overflow-y:scroll; 
 }
 

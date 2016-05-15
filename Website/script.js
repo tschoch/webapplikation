@@ -104,6 +104,16 @@ $(document).ready(function(){
 
 });
 
+//bewertung dropdown
+ $(function(){
+    $(".dropdown-menu").on('click', 'li a', function(){
+        $("#drpdwn").text($(this).text());
+        $("#drpdwn").val($(this).text());
+        $("#offer_bewert").val($(this).text());
+   });
+
+});
+
 
 //colorchange of avtive row
 $(document).ready(function(){
