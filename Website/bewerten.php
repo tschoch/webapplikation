@@ -96,7 +96,7 @@ if( localStorage.getItem('bewert_check') == 0){
                          <?php 
                              
                         if(($_SESSION['rate_offer_check']) ==1 && ($_SESSION['rate_check']) == 1){
-                        echo"<p id ='rate_check'>Dienstleistung auswählen</p><p id ='rate_check'> Bewertung muss zwischen 1 und 5 sein</p>";   
+                        echo"<p id ='rate_check'>Dienstleistung auswählen</p><p id ='rate_check'> Bewertung eingeben</p>";   
                          }elseif ($_SESSION['rate_check'] == 1){  
                             echo"Bewertung eingeben";
                          }elseif($_SESSION['rate_offer_check'] == 1){
