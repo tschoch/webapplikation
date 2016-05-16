@@ -1,5 +1,7 @@
 <?php
 session_start(); 
+$_SESSION['rate_check'] = 0;
+$_SESSION['rate_offer_check'] = 0; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,10 +18,12 @@ session_start();
 		<!-- Bootstrap core CSS -->
 		<link href="bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="stylesheet.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="star/star-rating-svg.css">
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src="star/jquery.star-rating-svg.js"></script> 
 	    <script src="script.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap" async defer></script>
+        <!--    starrating: https://github.com/nashio/star-rating-svg  -->
 	</head>
 
 	<body>
@@ -107,9 +111,10 @@ session_start();
 						<p id="ort_visit" >PLZ Ort</p>
 						<br>
 						<p id="offer_visit" >spezialisiert auf Angebot_1, Angebot2, Angebot_3</p>
-						<div class="rating">
-							<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-						</div>
+
+                        
+                        <div class="show_stars">
+                        </div>
 					</div> 
 
 					<div class="col-md-6">

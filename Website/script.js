@@ -1,7 +1,7 @@
 var $check = 2;
 var map;
 var marker;
-localStorage.setItem('bewert_check',0);
+localStorage.setItem('bewert_check',0); 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
@@ -94,7 +94,6 @@ $(document).ready(function(){
         }
         var $res = $offer_bewert.split(",");
             
-        //bewertung
         $("#anbieter_bewert").html("Anbieter: " + $name);
         $("#anbieter_bewert_h").val($name);
         $("#anbieter_id_bewert_h").val($fid_anbieter);
@@ -102,6 +101,35 @@ $(document).ready(function(){
         $("#drdwn_o_2").html($res[1]);
         $("#drdwn_o_3").html($res[2]);
 
+});
+
+//star-rating
+$(document).ready(function($) {
+     $(".rate_stars").starRating({
+         totalStars: 5,
+         starSize: 30,
+         emptyColor: 'lightgray',
+         hoverColor: 'salmon',
+         activeColor: 'cornflowerblue',
+         strokeWidth: 0,
+         useGradient: false,
+         disableAfterRate: false, 
+         callback: function(currentRating){
+            $("#range").val(currentRating);
+         }
+  });  
+});
+
+//showstars
+$(document).ready(function($) {
+     $(".show_stars").starRating({
+        totalStars: 5,
+        starSize: 30,
+        emptyColor: 'lightgray',
+        initialRating: 4.3,
+        strokeWidth: 0,
+        readOnly: true
+  });  
 });
 
 //bewertung dropdown
@@ -113,8 +141,7 @@ $(document).ready(function(){
    });
 
 });
-
-
+     
 //colorchange of avtive row
 $(document).ready(function(){
     $(".table_row").click(function(){
@@ -148,7 +175,6 @@ $(document).ready(function(){
         $("#test").html($file_id); 
         $("#pic").attr('src',$pfad);
         
-        
         localStorage.setItem('offer',$offer);
         localStorage.setItem('name',$name);
         localStorage.setItem('fid_anbieter',$file_id);
@@ -166,8 +192,6 @@ $(document).ready(function(){
    
             }
         }); 
-        
-        
         
         $.ajax({
             type: 'HEAD',
@@ -210,3 +234,13 @@ $(document).ready(function(){
         }  
     });
 });
+
+
+
+
+
+
+
+
+
+

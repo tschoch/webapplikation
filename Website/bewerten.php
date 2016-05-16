@@ -23,10 +23,13 @@ if( localStorage.getItem('bewert_check') == 0){
 		<!-- Bootstrap core CSS -->
 		<link href="bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="stylesheet.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="star/star-rating-svg.css">
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	    <script src="script.js"></script>
         <script>localStorage.setItem('bewert_check',1); </script>
+        <script src="star/jquery.star-rating-svg.js"></script> 
+        <!--    starrating: https://github.com/nashio/star-rating-svg-->
 		<script src="https://maps.googleapis.com/maps/api/js key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap" async defer></script>
 	</head>
 
@@ -65,6 +68,7 @@ if( localStorage.getItem('bewert_check') == 0){
         
         <div class="container">  
             <div class="row">
+                <div class="col-md-2 col-md-offset-5">
                 <form class="form-horizontal" action="send_post_bewertung.php" method="post">
                      <div class="form-group">
                     <input type="hidden" value="somhing" name="anbieter_bewert_h" id="anbieter_bewert_h" />
@@ -83,12 +87,20 @@ if( localStorage.getItem('bewert_check') == 0){
                         <input type="hidden" value="offer_bewert" name="offer_bewert" id="offer_bewert"/>     
                         <br>
                          <br> 
-                        <input id="range" name="range" placeholder="1-5" type="text" >/5
+                         
+                        <div class="rate_stars"></div>
+
+                        <input id="range" name="range" placeholder="1-5" type="hidden" >
                          
                          <p id="rate_check" >
                          <?php 
-                         if ($_SESSION['rate_check'] == 1){  
-                         echo"Bewertung muss zwischen 1 und 5 sein";
+                             
+                        if(($_SESSION['rate_offer_check']) ==1 && ($_SESSION['rate_check']) == 1){
+                        echo"<p id ='rate_check'>Dienstleistung auswählen</p><p id ='rate_check'> Bewertung muss zwischen 1 und 5 sein</p>";   
+                         }elseif ($_SESSION['rate_check'] == 1){  
+                            echo"Bewertung eingeben";
+                         }elseif($_SESSION['rate_offer_check'] == 1){
+                            echo"Dienstleistung auswählen";   
                          }
                          ?>
                         </p>     
@@ -96,6 +108,7 @@ if( localStorage.getItem('bewert_check') == 0){
                          <br>  
                         <button type="submit" class="btn btn-primary">bewerten</button>
                 </form> 
+                </div>
             </div>    
         </div>     
              

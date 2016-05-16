@@ -9,11 +9,22 @@ $Fuid_Kunde              = $_SESSION['FBID'];
 $Offer                   = $_POST['offer_bewert'];
 $bewertung               = $_POST['range'];
 
-if(($bewertung < 0) || ($bewertung > 5) || ($bewertung == NULL) ){
+
+if(($Offer == 'offer_bewert') && ($bewertung == NULL)){
+$_SESSION['rate_offer_check'] = 1;    
 $_SESSION['rate_check'] = 1;    
+header("Location: bewerten.php");   
+}elseif($bewertung == NULL){
+$_SESSION['rate_check'] = 1;  
+$_SESSION['rate_offer_check'] = 0;    
 header("Location: bewerten.php");    
+}elseif($Offer == 'offer_bewert'){
+$_SESSION['rate_offer_check'] = 1;   
+$_SESSION['rate_check'] = 0;    
+header("Location: bewerten.php");        
 }else{
 $_SESSION['rate_check'] = 0;
+$_SESSION['rate_offer_check'] = 0;  
 $query = "INSERT INTO bewertung (Bewertung,Ffname_dienstleister,Ffname_Kunde,Fuid_dienstleister,Fuid_Kunde,Offer) 
 VALUES ('$bewertung','$Ffname_dienstleister','$Ffname_Kunde','$Fuid_dienstleister','$Fuid_Kunde','$Offer')";   
 mysql_query($query);
