@@ -61,7 +61,7 @@ header("Location: bewerten.php");
         Bewertung_tot=(Bewertung_tot+'$bewertung'), Anzahl = (Anzahl + 1),
         Bewertung_schnitt = Bewertung_tot/Anzahl
         WHERE Fuid_dienstleister ='$Fuid_dienstleister' && Offer ='$Offer'";  
-        mysql_query($query_offer2);    
+        mysql_query($query_schnitt);    
     }
     
     header("Location: search_list.php");
