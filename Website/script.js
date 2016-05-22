@@ -1,7 +1,9 @@
-var $check = 2;
+var $check = 2;//ob bildvorhanden
 var map;
 var marker;
-localStorage.setItem('bewert_check',0); 
+localStorage.setItem('bewert_check',0); //ob anbierter ausgewählt
+
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
@@ -120,20 +122,8 @@ $(document).ready(function($) {
   });  
 });
 
-//showstars
-$(document).ready(function($) {
-     $(".show_stars").starRating({
-        totalStars: 5,
-        starSize: 30,
-        emptyColor: 'lightgray',
-        initialRating: 4.3,
-        strokeWidth: 0,
-        readOnly: true
-  });  
-});
-
 //bewertung dropdown
- $(function(){
+$(document).ready(function(){
     $(".dropdown-menu").on('click', 'li a', function(){
         $("#drpdwn").text($(this).text());
         $("#drpdwn").val($(this).text());
@@ -141,7 +131,37 @@ $(document).ready(function($) {
    });
 
 });
-     
+
+ //show_bewertung
+$(document).ready(function(){
+    
+    $(".drdwn_show_r").click(function(){
+       $bewert_offer = $(this).text();
+       $fid_card = $("#fid_dienstleister_card").html();
+        $.getJSON('ajax_bewertung.php', { "offer": $bewert_offer, "fid": $fid_card},  function(data) {
+            
+             var $bewert_schnitt  = data.Bewertung_schnitt;
+             var $anzahl_bewert = data.Anzahl;
+            
+            if($bewert_schnitt == null){
+                $(".show_stars").html("keine bewertungen vorhanden");
+                $(".anz_bewert").empty();   
+                $(".show_stars_offer").html($bewert_offer +":");  
+            }else{
+                $(".show_stars").empty();
+                if($anzahl_bewert == 1){
+                    $(".anz_bewert").html($anzahl_bewert + "Bewertung");               
+                }else{
+                    $(".anz_bewert").html($anzahl_bewert + "Bewertungen");                 
+                }
+                $(".show_stars").empty();
+                $(".show_stars").starRating({totalStars: 5, starSize: 30, emptyColor: 'lightgray', initialRating: $bewert_schnitt, strokeWidth: 0,readOnly: true});
+                $(".show_stars_offer").html($bewert_offer +":"); 
+            }
+        });        
+    });    
+});
+
 //colorchange of avtive row
 $(document).ready(function(){
     $(".table_row").click(function(){
@@ -174,11 +194,29 @@ $(document).ready(function(){
         $("#offer_visit").html($angebot);  
         $("#test").html($file_id); 
         $("#pic").attr('src',$pfad);
+        $("#fid_dienstleister_card").html($file_id); 
         
         localStorage.setItem('offer',$offer);
         localStorage.setItem('name',$name);
         localStorage.setItem('fid_anbieter',$file_id);
         
+        //set bewert_drpdwn
+        var $shw_bewert = $offer;   
+    
+        if($shw_bewert == null){
+            var $shw_bewert = "Angebot_1, Angebot_2, Angebot_3";
+        }
+        var $offer_bewert = $shw_bewert.split(",");
+            
+        $(".anz_bewert").empty(); 
+        $(".show_stars").empty();
+        $(".show_stars_offer").empty();
+        $("#drdwn_show_rate_1").html($offer_bewert[0]);
+        $("#drdwn_show_rate_2").html($offer_bewert[1]);
+        $("#drdwn_show_rate_3").html($offer_bewert[2]);
+        
+        
+        //check if picture exist
         $.ajax({
             type: 'HEAD',
             url: $pfad,

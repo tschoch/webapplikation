@@ -4,12 +4,12 @@
     $place = $_POST['place'];
     $range = $_POST['range'];
 
-    if (!($place == NULL) OR !($offer == NULL)):
-    $results = mysql_query("SELECT * FROM Users WHERE (Offer_1 LIKE '%{$offer}%' OR Offer_2 LIKE '%{$offer}%' OR Offer_3 LIKE '%{$offer}%') AND (PLZ LIKE '%{$place}%' OR City LIKE '%{$place}%')");
-  
-    else:
+    if (!($place == NULL) OR !($offer == NULL)){
+        $results = mysql_query("SELECT * FROM Users WHERE (Offer_1 LIKE '%{$offer}%' OR Offer_2 LIKE '%{$offer}%' OR Offer_3 LIKE '%{$offer}%') AND (PLZ LIKE '%{$place}%' OR City LIKE '%{$place}%')");
+
+    }else{
     $results = NULL;  
-    endif;
+    }
 
     if($results != NULL){
  ?>
@@ -36,11 +36,28 @@ $(document).ready(function(){
         $("#offer_visit").html($angebot);  
         $("#test").html($file_id); 
         $("#pic").attr('src',$pfad);
+        $("#fid_dienstleister_card").html($file_id); 
     
         localStorage.setItem('offer',$offer);
         localStorage.setItem('name',$name);
         localStorage.setItem('bewert_check',1);
         localStorage.setItem('fid_anbieter',$file_id);
+    
+        //set bewert_drpdwn
+        var $shw_bewert = $offer;   
+    
+        if($shw_bewert == null){
+            var $shw_bewert = "Angebot_1, Angebot_2, Angebot_3";
+        }
+        var $offer_bewert = $shw_bewert.split(",");
+            
+        $("#drdwn_show_rate_1").html($offer_bewert[0]);
+        $("#drdwn_show_rate_2").html($offer_bewert[1]);
+        $("#drdwn_show_rate_3").html($offer_bewert[2]);
+        
+        
+        //check if picture exist    
+    
         
         $.ajax({
             type: 'HEAD',
@@ -80,7 +97,7 @@ $(document).ready(function(){
             
         //bewertung
         $("#anbieter_bewert").html("Anbieter: " + $name);
-         $("#anbieter_bewert_h").val($name);
+        $("#anbieter_bewert_h").val($name);
         $("#anbieter_id_bewert_h").val($fid_anbieter);
         $("#drdwn_o_1").html($res[0]);
         $("#drdwn_o_2").html($res[1]);

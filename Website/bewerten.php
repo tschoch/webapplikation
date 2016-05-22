@@ -95,7 +95,11 @@ if( localStorage.getItem('bewert_check') == 0){
                          <p id="rate_check" >
                          <?php 
                              
-                        if(($_SESSION['rate_offer_check']) ==1 && ($_SESSION['rate_check']) == 1){
+                        if($_SESSION['own_rate_check'] == 1){
+                            echo"Man kann sich nicht sleber bewerten"; 
+                        }elseif ($_SESSION['date_check'] == 1){
+                            echo"Diese woche schon bewertet"; 
+                        }elseif(($_SESSION['rate_offer_check']) ==1 && ($_SESSION['rate_check']) == 1){
                         echo"<p id ='rate_check'>Dienstleistung auswählen</p><p id ='rate_check'> Bewertung eingeben</p>";   
                          }elseif ($_SESSION['rate_check'] == 1){  
                             echo"Bewertung eingeben";

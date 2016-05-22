@@ -2,6 +2,8 @@
 session_start(); 
 $_SESSION['rate_check'] = 0;
 $_SESSION['rate_offer_check'] = 0; 
+$_SESSION['date_check'] = 0;
+$_SESSION['own_rate_check'] = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +21,7 @@ $_SESSION['rate_offer_check'] = 0;
 		<link href="bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="stylesheet.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="star/star-rating-svg.css">
-        
+                
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script src="star/jquery.star-rating-svg.js"></script> 
 	    <script src="script.js"></script>
@@ -111,23 +113,38 @@ $_SESSION['rate_offer_check'] = 0;
 						<p id="ort_visit" >PLZ Ort</p>
 						<br>
 						<p id="offer_visit" >spezialisiert auf Angebot_1, Angebot2, Angebot_3</p>
-
+                        <p id ="fid_dienstleister_card" style="display:none;" > </p>
                         
-                        <div class="show_stars">
-                        </div>
-					</div> 
+                      <div class="dropdown">
+                       <a class="dropdown-toggle" type="button" id="show_rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >Bewertung
+                       <span class="caret"></span></a>
+                       <ul class="dropdown-menu" id="rate_drpdwn_list" >
+                            <li ><a class="drdwn_show_r" id="drdwn_show_rate_1" href="#">Angebot_1</a></li>
+                            <li ><a class="drdwn_show_r" id="drdwn_show_rate_2" href="#">Angebot_2</a></li>
+                            <li ><a class="drdwn_show_r" id="drdwn_show_rate_3" href="#">Angebot_3</a></li> 
+                       </ul>
+                     </div>     
+                    <br> 
+                    <div class="show_stars_offer">
+                    </div>    
+                    <div class="show_stars">
+                    </div>
+                    <div class="anz_bewert">
+                    </div>    
+                    <br>                      
+                    <div class="form-group">
+				        <button type="button" id="bewert_button" class="btn btn-primary" onclick='location.href="bewerten.php"'>Bewerten</button>
+				    </div>        
+				</div> 
 
-					<div class="col-md-6">
-						<br>
-						<br>
-						<br>
-						<img id="pic" src="uploads/10_1" style="width:100%"/>  
-                        <p id="img_label"></p>
-					</div>
-                    
-                <div class="form-group">
-				 <button type="button" id="bewert_button" class="btn btn-primary" onclick='location.href="bewerten.php"'>Bewerten</button>
+				<div class="col-md-6">
+					<br>
+					<br>
+					<br>
+					<img id="pic" src="uploads/10_1" style="width:100%"/>  
+                    <p id="img_label"></p>
 				</div>
+                    
                     
                     
 				</div>   
@@ -206,7 +223,6 @@ $_SESSION['rate_offer_check'] = 0;
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="bootstrap-3.3.6/dist/js/bootstrap.min.js"></script>        
 	</body>
