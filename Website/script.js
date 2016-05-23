@@ -42,13 +42,39 @@ function initMap() {
 					var $place = $plz + " " + $ort;
 					var $angebot = "spezialisiert auf " + $offer;
 					
+                    //check ob dienstleister angewählt
+                    localStorage.setItem('bewert_check',1);
+        
+                    //set angaben von karte
 					$("#anb_visit").html($name);
 					$("#ort_visit").html($place);
 					$("#offer_visit").html($angebot);  
 					$("#test").html($file_id); 
 					$("#pic").attr('src',$pfad);
+                    $("#fid_dienstleister_card").html($file_id); 
 					
-					
+                    //set localstorage für bewertung.php
+                    localStorage.setItem('offer',$offer);
+                    localStorage.setItem('name',$name);
+                    localStorage.setItem('fid_anbieter',$file_id);
+
+                    //set bewert_drpdwn
+                    var $shw_bewert = $offer;   
+
+                    if($shw_bewert == null){
+                        var $shw_bewert = "Angebot_1, Angebot_2, Angebot_3";
+                    }
+                    var $offer_bewert = $shw_bewert.split(",");
+
+                    $("#show_rate").html('Bewertung '+'<span class="caret"></span>');
+                    $(".anz_bewert").empty(); 
+                    $(".show_stars").starRating('setRating',0);
+                    $(".show_stars_offer").empty();
+                    $("#drdwn_show_rate_1").html($offer_bewert[0]);
+                    $("#drdwn_show_rate_2").html($offer_bewert[1]);
+                    $("#drdwn_show_rate_3").html($offer_bewert[2]);
+
+                    //check if picture exist
 					$.ajax({
 						type: 'HEAD',
 						url: $pfad,
@@ -192,6 +218,8 @@ $(document).ready(function(){
 //set elements of advise
 $(document).ready(function(){
     $(".table_row").click(function() {
+        
+        //save variables from table
         var $row_count = $(this).attr('id');
         var $plz = $(this).find("#plz_list").html();
         var $ort = $(this).find("#ort_list").html();
@@ -203,9 +231,11 @@ $(document).ready(function(){
         
         var $place = $plz + " " + $ort;
         var $angebot = "spezialisiert auf " + $offer;
+        
+        //check ob dienstleister angewählt
         localStorage.setItem('bewert_check',1);
         
-        
+        //set angaben von karte
         $("#anb_visit").html($name);
         $("#ort_visit").html($place);
         $("#offer_visit").html($angebot);  
@@ -213,6 +243,7 @@ $(document).ready(function(){
         $("#pic").attr('src',$pfad);
         $("#fid_dienstleister_card").html($file_id); 
         
+        //set localstorage für bewertung.php
         localStorage.setItem('offer',$offer);
         localStorage.setItem('name',$name);
         localStorage.setItem('fid_anbieter',$file_id);
