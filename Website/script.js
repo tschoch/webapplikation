@@ -144,6 +144,7 @@ $(document).ready(function(){
 
 });
 
+//show bewert dropdown
 $(document).ready(function(){
     $(".drdwn_show_r").click(function(){
       $("#show_rate").html($(this).text()+" "+'<span class="caret"></span>');
@@ -223,7 +224,8 @@ $(document).ready(function(){
             var $shw_bewert = "Angebot_1, Angebot_2, Angebot_3";
         }
         var $offer_bewert = $shw_bewert.split(",");
-            
+          
+        $("#show_rate").html('Bewertung '+'<span class="caret"></span>');
         $(".anz_bewert").empty(); 
         $(".show_stars").starRating('setRating',0);
         $(".show_stars_offer").empty();
