@@ -1,5 +1,5 @@
 /*
- *  jQuery StarRatingSvg v0.9.5
+ *  jQuery StarRatingSvg v1.0.1
  *
  *  http://github.com/nashio/star-rating-svg
  *  Author: Ignacio Chavez
@@ -20,7 +20,7 @@
     hoverColor: 'orange',
     activeColor: 'gold',
     useGradient: true,
-    readonly: false,
+    readOnly: false,
     disableAfterRate: true,
     starGradient: {
       start: '#FEF7CD',
@@ -73,7 +73,7 @@
       if( this.settings.readOnly ){ return; }
       this.$stars.on('mouseover', this.hoverRating.bind(this));
       this.$stars.on('mouseout', this.restoreState.bind(this));
-      this.$stars.on('click', this.applyRating.bind(this));
+      this.$stars.on('click', this.handleRating.bind(this));
     },
 
     // apply styles to hovered stars
@@ -84,18 +84,23 @@
     },
 
     // clicked on a rate, apply style and state
-    applyRating: function(e){
+    handleRating: function(e){
       var index = this.getIndex(e);
       var rating = index + 1;
 
-      // paint selected and remove hovered color
-      this.paintStars(index, 'active');
+      this.applyRating(rating, this.$el);
       this.executeCallback( rating, this.$el );
-      this._state.rating = rating;
 
       if(this.settings.disableAfterRate){
         this.$stars.off();
       }
+    },
+
+    applyRating: function(rating){
+      var index = rating - 1;
+      // paint selected and remove hovered color
+      this.paintStars(index, 'active');
+      this._state.rating = index + 1;
     },
 
     restoreState: function(e){
@@ -108,7 +113,11 @@
     getIndex: function(e){
       var $target = $(e.currentTarget);
       var width = $target.width();
-      var side = ( e.offsetX < (width / 2) && !this.settings.useFullStars) ? 'left' : 'right';
+      var side = $(e.target).attr('data-side');
+
+      // hovered outside the star, calculate by pixel instead
+      side = (!side) ? this.getOffsetByPixel(e, $target, width) : side;
+      side = (this.settings.useFullStars) ? 'right' : side ;
 
       // get index for half or whole star
       var index = $target.index() - ((side === 'left') ? 0.5 : 0);
@@ -116,6 +125,11 @@
       // pointer is way to the left, rating should be none
       index = ( index < 0 && (e.offsetX < width / 5) ) ? -1 : index;
       return index;
+    },
+
+    getOffsetByPixel: function(e, $target, width){
+      var leftX = e.pageX - $target.offset().left;
+      return ( leftX <= (width / 2) && !this.settings.useFullStars) ? 'left' : 'right';
     },
 
     initRating: function(){
@@ -174,14 +188,31 @@
 
   var publicMethods = {
 
-    unload: function(){
+    unload: function() {
       var _name = 'plugin_' + pluginName;
       var $el = $(this);
-      var $star = $el.data(_name).$stars;
-      $el.removeData(_name);
-      $star.off();
-    }
+      var $starSet = $el.data(_name).$stars;
+      $starSet.off();
+      $el.removeData(_name).remove();
+    },
 
+    setRating: function(rating, round) {
+      var _name = 'plugin_' + pluginName;
+      var $el = $(this);
+      var $plugin = $el.data(_name);
+      if( rating > $plugin.settings.totalStars || rating < 0 ) { return; }
+      if( round ){
+        rating = Math.round(rating);
+      }
+      $plugin.applyRating(rating);
+    },
+
+    getRating: function() {
+      var _name = 'plugin_' + pluginName;
+      var $el = $(this);
+      var $starSet = $el.data(_name);
+      return $starSet._state.rating;
+    }
   };
 
 
@@ -193,8 +224,9 @@
     // if options is a public method
     if( !$.isPlainObject(options) ){
       if( publicMethods.hasOwnProperty(options) ){
-        publicMethods[options].apply(this);
-        return;
+        return publicMethods[options].apply(this, Array.prototype.slice.call(arguments, 1));
+      } else {
+        $.error('Method '+ options +' does not exist on ' + pluginName + '.js');
       }
     }
 

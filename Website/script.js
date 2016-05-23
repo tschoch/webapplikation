@@ -122,14 +122,32 @@ $(document).ready(function($) {
   });  
 });
 
+
+//star-rating-show
+$(document).ready(function($) {
+    $(".show_stars").starRating({
+        totalStars: 5, 
+        starSize: 30, 
+        emptyColor: 'lightgray', 
+        initialRating: 0, 
+        strokeWidth: 0, 
+        readOnly: true});  
+});
+
 //bewertung dropdown
 $(document).ready(function(){
     $(".dropdown-menu").on('click', 'li a', function(){
-        $("#drpdwn").text($(this).text());
+        $("#drpdwn").html($(this).text()+" "+'<span class="caret"></span>');
         $("#drpdwn").val($(this).text());
         $("#offer_bewert").val($(this).text());
    });
 
+});
+
+$(document).ready(function(){
+    $(".drdwn_show_r").click(function(){
+      $("#show_rate").html($(this).text()+" "+'<span class="caret"></span>');
+   });
 });
 
  //show_bewertung
@@ -140,23 +158,21 @@ $(document).ready(function(){
        $fid_card = $("#fid_dienstleister_card").html();
         $.getJSON('ajax_bewertung.php', { "offer": $bewert_offer, "fid": $fid_card},  function(data) {
             
-             var $bewert_schnitt  = data.Bewertung_schnitt;
-             var $anzahl_bewert = data.Anzahl;
+            var $bewert_schnitt  = data.Bewertung_schnitt;
+            var $anzahl_bewert = data.Anzahl;
             
-            if($bewert_schnitt == null){
-                $(".show_stars").html("keine bewertungen vorhanden");
-                $(".anz_bewert").empty();   
-                $(".show_stars_offer").html($bewert_offer +":");  
+            $bewert_schnitt =  Math.round($bewert_schnitt*2)/2;
+            
+            if($anzahl_bewert == null){
+                $(".anz_bewert").html("keine bewertungen vorhanden");   
+                $(".show_stars").starRating('setRating',0);
             }else{
-                $(".show_stars").empty();
                 if($anzahl_bewert == 1){
-                    $(".anz_bewert").html($anzahl_bewert + "Bewertung");               
+                    $(".anz_bewert").html($anzahl_bewert + " Bewertung");               
                 }else{
-                    $(".anz_bewert").html($anzahl_bewert + "Bewertungen");                 
+                    $(".anz_bewert").html($anzahl_bewert + " Bewertungen");                 
                 }
-                $(".show_stars").empty();
-                $(".show_stars").starRating({totalStars: 5, starSize: 30, emptyColor: 'lightgray', initialRating: $bewert_schnitt, strokeWidth: 0,readOnly: true});
-                $(".show_stars_offer").html($bewert_offer +":"); 
+                $(".show_stars").starRating('setRating',$bewert_schnitt);
             }
         });        
     });    
@@ -209,12 +225,11 @@ $(document).ready(function(){
         var $offer_bewert = $shw_bewert.split(",");
             
         $(".anz_bewert").empty(); 
-        $(".show_stars").empty();
+        $(".show_stars").starRating('setRating',0);
         $(".show_stars_offer").empty();
         $("#drdwn_show_rate_1").html($offer_bewert[0]);
         $("#drdwn_show_rate_2").html($offer_bewert[1]);
         $("#drdwn_show_rate_3").html($offer_bewert[2]);
-        
         
         //check if picture exist
         $.ajax({

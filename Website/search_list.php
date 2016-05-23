@@ -118,15 +118,13 @@ $_SESSION['own_rate_check'] = 0;
                       <div class="dropdown">
                        <a class="dropdown-toggle" type="button" id="show_rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >Bewertung
                        <span class="caret"></span></a>
-                       <ul class="dropdown-menu" id="rate_drpdwn_list" >
+                       <ul class="dropdown-menu" role="menu" id="rate_drpdwn_list" >
                             <li ><a class="drdwn_show_r" id="drdwn_show_rate_1" href="#">Angebot_1</a></li>
                             <li ><a class="drdwn_show_r" id="drdwn_show_rate_2" href="#">Angebot_2</a></li>
                             <li ><a class="drdwn_show_r" id="drdwn_show_rate_3" href="#">Angebot_3</a></li> 
                        </ul>
                      </div>     
-                    <br> 
-                    <div class="show_stars_offer">
-                    </div>    
+                    
                     <div class="show_stars">
                     </div>
                     <div class="anz_bewert">
