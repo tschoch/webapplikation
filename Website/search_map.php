@@ -139,7 +139,7 @@ $_SESSION['own_rate_check'] = 0;
 						<br>
 						<br>
 						<br>
-						<img id="pic" src="uploads/10_1" style="width:100%"/>  
+						<img id="pic" src="uploads/10_1" style="width:100%; max-height:270px"/>  
                         <p id="img_label"></p>
 					</div>
 				</div> 

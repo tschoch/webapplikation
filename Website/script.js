@@ -22,6 +22,8 @@ function initMap() {
 			id: $id,
 			map: map
 		});
+        
+        
 		 google.maps.event.addListener(marker, 'click', function (element) { 
 			var $id= this.id;
 			$('#hiddntble > tbody > tr > td ').each(function(element) {
@@ -75,35 +77,30 @@ function initMap() {
                     $("#drdwn_show_rate_3").html($offer_bewert[2]);
 
                     //check if picture exist
-					$.ajax({
-						type: 'HEAD',
-						url: $pfad,
-						success: function(){
-							$("#pic").attr('src',$pfad); 
-							$check = 2;
-						},
-						error: function(){
-							$("#pic").attr('src','uploads/10_1');
-							$check = 1;
-			   
-						}
-					}); 
-					
-					
-					
-					$.ajax({
-						type: 'HEAD',
-						url: $pfad_nxt,
-						success: function(){
-							$("#img_label").html("klick für mehr bilder"); 
-						},
-						error: function(){
-							$("#img_label").html(" "); 
-						}
-					}); 
-							}
-							
+                    $.ajax({
+                        type: 'HEAD',
+                        url: $pfad,
+                        success: function(){
+                            $("#pic").attr('src',$pfad); 
+                            $check = 2;
+                        },
+                        error: function(){
+                            $("#pic").attr('src','uploads/10_1');
+                            $check = 1;
+                        }
+                    }); 
 
+                    $.ajax({
+                        type: 'HEAD',
+                        url: $pfad_nxt,
+                        success: function(){
+                            $("#img_label").html("klick für mehr bilder"); 
+                        },
+                        error: function(){
+                            $("#img_label").html(" "); 
+                        }
+                    });
+				}
 						});
 					});
 				});
@@ -275,7 +272,6 @@ $(document).ready(function(){
             error: function(){
                 $("#pic").attr('src','uploads/10_1');
                 $check = 1;
-   
             }
         }); 
         
