@@ -1,4 +1,4 @@
-var $check = 2;//ob bildvorhanden
+localStorage.setItem('check',2);//ob bildvorhanden
 var map;
 var marker;
 localStorage.setItem('bewert_check',0); //ob anbierter ausgewählt
@@ -86,11 +86,11 @@ $("head").append(s);
                         url: $pfad,
                         success: function(){
                             $("#pic").attr('src',$pfad); 
-                            $check = 2;
+                            localStorage.setItem('check',2);
                         },
                         error: function(){
                             $("#pic").attr('src','uploads/10_1');
-                            $check = 1;
+                            localStorage.setItem('check',1);
                         }
                     }); 
 
@@ -272,12 +272,12 @@ $(document).ready(function(){
             type: 'HEAD',
             url: $pfad,
             success: function(){
-                $("#pic").attr('src',$pfad); 
-                $check = 2;
+                $("#pic").attr('src',$pfad);
+                localStorage.setItem('check',2);
             },
             error: function(){
                 $("#pic").attr('src','uploads/10_1');
-                $check = 1;
+                localStorage.setItem('check',1);
             }
         }); 
         
@@ -301,6 +301,7 @@ $(document).ready(function(){
         
         var $pfad = "uploads/"+ $file_id +"_"+$pic;
         var $pfad_bgn = "uploads/"+ $file_id +"_1";
+        var $check =localStorage.getItem('check');
         
         if($file_id > 10 && $check!=1){        
         $.ajax({

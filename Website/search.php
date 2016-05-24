@@ -86,10 +86,11 @@ $(document).ready(function(){
             url: $pfad,
             success: function(){
                 $("#pic").attr('src',$pfad); 
+                localStorage.setItem('check',2);
             },
             error: function(){
                 $("#pic").attr('src','uploads/10_1'); 
-              
+                localStorage.setItem('check',1);
             }
         }); 
 
