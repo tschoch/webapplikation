@@ -26,7 +26,7 @@ $_SESSION['own_rate_check'] = 0;
         <script src="star/jquery.star-rating-svg.js"></script> 
         <!--    starrating: https://github.com/nashio/star-rating-svg  -->
 	    <script src="script.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap" async defer></script>
+
 	</head>
 
 	<body>

@@ -3,8 +3,12 @@ var map;
 var marker;
 localStorage.setItem('bewert_check',0); //ob anbierter ausgewählt
 
-
-function initMap() {
+(function($){  
+var s = document.createElement("script");
+s.type = "text/javascript";
+s.src  = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap";
+$("head").append(s);   
+ window.initMap = function () {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
         center: {lat: 46.8209, lng: 8.4078}
@@ -25,7 +29,7 @@ function initMap() {
         
         
 		 google.maps.event.addListener(marker, 'click', function (element) { 
-			var $id= this.id;
+			var $id= this.id;                 
 			$('#hiddntble > tbody > tr > td ').each(function(element) {
 				var $bla = $(this).html();
 				if($id == $bla){
@@ -105,7 +109,7 @@ function initMap() {
 					});
 				});
 			}
-
+}(jQuery));
 
 //bewertung
 $(document).ready(function(){
@@ -175,6 +179,7 @@ $(document).ready(function(){
 });
 
  //show_bewertung
+(function($){
 $(document).ready(function(){
     
     $(".drdwn_show_r").click(function(){
@@ -201,6 +206,7 @@ $(document).ready(function(){
         });        
     });    
 });
+}(jQuery));
 
 //colorchange of avtive row
 $(document).ready(function(){
