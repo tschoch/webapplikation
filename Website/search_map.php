@@ -160,7 +160,7 @@ $_SESSION['own_rate_check'] = 0;
                             
                         <?php   
                             $rowcount = 1;
-                            while($row = mysql_fetch_array($results)) {    
+                            foreach ($results as $row) {    
                         ?> 
                             <tr class="table_row" id="<?php echo $rowcount?>" >
                             <td id="name_list" ><?php echo $row['Ffname']?></td>

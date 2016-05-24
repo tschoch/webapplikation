@@ -1,12 +1,34 @@
         
 <?php
-    $offer = $_POST['search'];
-    $place = $_POST['place'];
-    $range = $_POST['range'];
+    $offer   = "%{$_POST['search']}%";
+    $place_i = "%{$_POST['place']}%";
+    $place_s = "%{$_POST['place']}%";
+    $range   = $_POST['range'];
 
-    if (!($place == NULL) OR !($offer == NULL)){
-        $results = mysql_query("SELECT * FROM Users WHERE (Offer_1 LIKE '%{$offer}%' OR Offer_2 LIKE '%{$offer}%' OR Offer_3 LIKE '%{$offer}%') AND (PLZ LIKE '%{$place}%' OR City LIKE '%{$place}%')");
 
+if (($place_i != NULL) || ($place_s != NULL) || ($offer != NULL)){
+
+        $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+
+        if($stmt = $mysqli->prepare("SELECT Ffname, PLZ, City, Offer_1, Offer_2, Offer_3, Fuid, lat, lng FROM Users WHERE (Offer_1 LIKE ? OR Offer_2 LIKE ? OR Offer_3 LIKE ? ) AND (PLZ LIKE ? OR City LIKE ?)")){
+
+              $stmt->bind_param("sssis", $offer, $offer,$offer,$place_i,$place_s); 
+
+              $stmt->execute();
+            
+              $stmt->bind_result($out_Ffname, $out_PLZ, $out_City, $out_Offer_1, $out_Offer_2, $out_Offer_3, $out_Fuid, $out_lat, $out_lng);
+
+              $results = array();
+              while ($stmt->fetch()) {
+                $results [] = array('Ffname' => $out_Ffname, 'PLZ' => $out_PLZ, 'City' => $out_City, 'Offer_1' => $out_Offer_1, 'Offer_2' => $out_Offer_2, 'Offer_3' => $out_Offer_3, 'Fuid' => $out_Fuid, 'lat' => $out_lat, 'lng' => $out_lng);
+              }
+            
+            $stmt->close();
+
+            $mysqli->close(); 
+
+        }
+    
     }else{
     $results = NULL;  
     }
