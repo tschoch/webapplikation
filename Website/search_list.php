@@ -132,7 +132,7 @@ $_SESSION['own_rate_check'] = 0;
                     <br>                      
                     <div>
 				        <button type="button" id="bewert_button" class="btn btn-primary" onclick='location.href="bewerten.php"'>Bewerten</button>
-                         <a type="button" href="mailto: " id="email_senden" class="btn btn-primary">E-mail senden</a>
+                         <a type="button" href="" id="email_senden" class="btn btn-primary">E-mail senden</a>
 				    </div>        
 				</div> 
 
