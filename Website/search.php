@@ -1,15 +1,29 @@
-        
 <?php
     $offer   = "%{$_POST['search']}%";
     $place   = $_POST['place'];
     $range_1 = $_POST['range'];
-    $range   = $range_1 + 5;      
+    $range   = $range_1 + 5;  
     if (empty($range)) {
         $range = 5;
     }
     if (empty($place)) {
             $range = 200;
         }
+
+
+    if(($offer == "%%")&&($place == NULL)&&($range == 200)){
+        if(isset($_COOKIE["offer"])){
+            $offer = $_COOKIE["offer"];
+            $place = $_COOKIE["place"];
+            $range = $_COOKIE["range"];
+        }
+    }
+
+        setcookie("offer", $offer, time() + 60);
+        setcookie("place", $place, time() + 60);
+        setcookie("range", $range, time() + 60);
+        
+
 
          // function to geocode address, it will return false if unable to geocode address
         function geocode($address){
