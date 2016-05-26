@@ -167,7 +167,13 @@ $_SESSION['own_rate_check'] = 0;
                             <td id="name_list" ><?php echo $row['Ffname']?></td>
                             <td id="plz_list" ><?php echo $row['PLZ']?></td>
                             <td id="ort_list" ><?php echo $row['City']?></td>
-                            <td id="offer_list" ><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?></td>
+							<?php if(!empty($row['Offer_3'])){ ?>
+								<td id="offer_list" ><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?></td> 
+							<?php } elseif (!empty($row['Offer_2'])) { ?>
+								<td id="offer_list" ><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?></td> 
+							<?php } else { ?>
+								<td id="offer_list" ><?php echo $row['Offer_1']?></td> 
+							<?php } ?>
                             <td id="fid_list" ><?php echo $row['Fuid']?></td>   
 							<td id="lat" ><?php echo $row['lat']?></td>    
 							<td id="lng" ><?php echo $row['lng']?></td> 
