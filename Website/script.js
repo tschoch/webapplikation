@@ -19,6 +19,7 @@ $("head").append(s);
 		var $lng = $(this).find("#lng").html();
 		var $name = $(this).find("#name_list").html();
 		var $id = $(this).find("#fid_list").html();
+
 		var $latlng = new google.maps.LatLng(parseFloat($lat),parseFloat($lng));
 		marker = new google.maps.Marker({
 			position: $latlng,
@@ -39,6 +40,7 @@ $("head").append(s);
 					var $row_count = $tblerow.id;
 					var $plz = $tblerow.childNodes[3].innerHTML;
 					var $name = $tblerow.childNodes[1].innerHTML;
+                    var $email = $tblerow.childNodes[15].innerHTML;
 					var $ort = $tblerow.childNodes[5].innerHTML;
 					var $offer = $tblerow.childNodes[7].innerHTML;  
 						$file_id = $tblerow.childNodes[9].innerHTML;  
@@ -48,6 +50,8 @@ $("head").append(s);
 					var $place = $plz + " " + $ort;
 					var $angebot = "spezialisiert auf " + $offer;
 					
+                    console.log($email);
+                    
                     //check ob dienstleister angewählt
                     localStorage.setItem('bewert_check',1);
         
@@ -57,7 +61,8 @@ $("head").append(s);
 					$("#offer_visit").html($angebot);  
 					$("#test").html($file_id); 
 					$("#pic").attr('src',$pfad);
-                    $("#fid_dienstleister_card").html($file_id); 
+                    $("#fid_dienstleister_card").html($file_id);
+                    $("#email_senden").attr("href", "mailto:" + $email);
 					
                     //set localstorage für bewertung.php
                     localStorage.setItem('offer',$offer);
@@ -223,14 +228,15 @@ $(document).ready(function(){
     $(".table_row").click(function() {
         
         //save variables from table
-        var $row_count = $(this).attr('id');
-        var $plz = $(this).find("#plz_list").html();
-        var $ort = $(this).find("#ort_list").html();
-		var $name = $(this).find("#name_list").html();
-        var $offer = $(this).find("#offer_list").html();   
-            $file_id = $(this).find("#fid_list").html(); 
-        var $pfad = "uploads/"+ $file_id +"_1";
-        var $pfad_nxt = "uploads/"+ $file_id +"_2";
+        var $row_count  = $(this).attr('id');
+        var $plz        = $(this).find("#plz_list").html();
+        var $ort        = $(this).find("#ort_list").html();
+		var $name       = $(this).find("#name_list").html();
+        var $email      = $(this).find("#email_list").html();
+        var $offer      = $(this).find("#offer_list").html();   
+            $file_id    = $(this).find("#fid_list").html(); 
+        var $pfad       = "uploads/"+ $file_id +"_1";
+        var $pfad_nxt   = "uploads/"+ $file_id +"_2";
         
         var $place = $plz + " " + $ort;
         var $angebot = "spezialisiert auf " + $offer;
@@ -245,6 +251,7 @@ $(document).ready(function(){
         $("#test").html($file_id); 
         $("#pic").attr('src',$pfad);
         $("#fid_dienstleister_card").html($file_id); 
+        $("#email_senden").attr("href", "mailto:" + $email);
         
         //set localstorage für bewertung.php
         localStorage.setItem('offer',$offer);

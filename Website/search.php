@@ -86,7 +86,7 @@ if (($place_i != NULL) || ($place_s != NULL) || ($offer != NULL)){
     
    // "ssssi",$offer, $offer,$offer,$place_s,$place_i
     
-    if (!($stmt = $mysqli->prepare("SELECT Ffname, PLZ, City, Offer_1, Offer_2, Offer_3, Fuid, lat, lng, ( 6371  * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( lat ) ) ) ) AS distance FROM Users WHERE (Offer_1 LIKE ? OR Offer_2 LIKE ? OR Offer_3 LIKE ? ) HAVING distance < ?  ORDER BY distance"))) {
+    if (!($stmt = $mysqli->prepare("SELECT Ffname, Femail, PLZ, City, Offer_1, Offer_2, Offer_3, Fuid, lat, lng, ( 6371  * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( lat ) ) ) ) AS distance FROM Users WHERE (Offer_1 LIKE ? OR Offer_2 LIKE ? OR Offer_3 LIKE ? ) HAVING distance < ?  ORDER BY distance"))) {
         echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     }
     if (!$stmt->bind_param("dddsssd", $lat, $lng, $lat, $offer, $offer, $offer, $range)) {
@@ -95,13 +95,13 @@ if (($place_i != NULL) || ($place_s != NULL) || ($offer != NULL)){
     if (!$stmt->execute()) {
         echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
     }
-    if (!$stmt->bind_result($out_Ffname, $out_PLZ, $out_City, $out_Offer_1, $out_Offer_2, $out_Offer_3, $out_Fuid, $out_lat, $out_lng,$out_distance )) {
+    if (!$stmt->bind_result($out_Ffname, $out_Femail, $out_PLZ, $out_City, $out_Offer_1, $out_Offer_2, $out_Offer_3, $out_Fuid, $out_lat, $out_lng,$out_distance )) {
         echo "Binding output parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 }
     
     $results = array();
     while ($stmt->fetch()) {
-        $results [] = array('Ffname' => $out_Ffname, 'PLZ' => $out_PLZ, 'City' => $out_City, 'Offer_1' => $out_Offer_1, 'Offer_2' => $out_Offer_2, 'Offer_3' => $out_Offer_3, 'Fuid' => $out_Fuid, 'lat' => $out_lat, 'lng' => $out_lng, 'distance' => $out_distance );
+        $results [] = array('Ffname' => $out_Ffname, 'Femail' => $out_Femail, 'PLZ' => $out_PLZ, 'City' => $out_City, 'Offer_1' => $out_Offer_1, 'Offer_2' => $out_Offer_2, 'Offer_3' => $out_Offer_3, 'Fuid' => $out_Fuid, 'lat' => $out_lat, 'lng' => $out_lng, 'distance' => $out_distance );
     }
     
     $stmt->close();
@@ -123,6 +123,7 @@ $(document).ready(function(){
         var $plz = $("#1").find("#plz_list").html();
         var $ort = $("#1").find("#ort_list").html();
 		var $name = $("#1").find("#name_list").html();
+        var $email = $(this).find("#email_list").html();
         var $offer = $("#1").find("#offer_list").html();   
             $file_id = $("#1").find("#fid_list").html(); 
         var $pfad = "uploads/"+ $file_id +"_1";
@@ -138,6 +139,7 @@ $(document).ready(function(){
         $("#test").html($file_id); 
         $("#pic").attr('src',$pfad);
         $("#fid_dienstleister_card").html($file_id); 
+        $("#email_senden").attr("href", "mailto:" + $email);
     
         localStorage.setItem('offer',$offer);
         localStorage.setItem('name',$name);

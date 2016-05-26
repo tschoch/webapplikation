@@ -130,8 +130,9 @@ $_SESSION['own_rate_check'] = 0;
                          <div class="anz_bewert">
                          </div>    
                          <br>   
-                         <div class="form-group">
+                         <div>
 				            <button type="button" id="bewert_button" class="btn btn-primary" onclick='location.href="bewerten.php"'>Bewerten</button>
+                             <a type="button" href="mailto: " id="email_senden" class="btn btn-primary">E-mail senden</a>
 				         </div>                             
 					</div> 
 
@@ -169,7 +170,8 @@ $_SESSION['own_rate_check'] = 0;
                             <td id="offer_list" ><?php echo $row['Offer_1']?>, <?php echo $row['Offer_2']?>, <?php echo $row['Offer_3']?></td>
                             <td id="fid_list" ><?php echo $row['Fuid']?></td>   
 							<td id="lat" ><?php echo $row['lat']?></td>    
-							<td id="lng" ><?php echo $row['lng']?></td>    							
+							<td id="lng" ><?php echo $row['lng']?></td> 
+                            <td id="email_list"><?php echo $row['Femail']?></td>    
                             </tr> 
                         <?php
                             $rowcount++;
