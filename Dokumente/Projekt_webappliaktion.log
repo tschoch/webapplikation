@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.23)  26 MAY 2016 14:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.23)  26 MAY 2016 15:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -785,14 +785,14 @@ LaTeX Info: Redefining \nameref on input line 41.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./Bilder/logo_ntb.png, id=44, 539.01375pt x 187.45032pt>
+<./Bilder/logo_ntb.png, id=88, 539.01375pt x 187.45032pt>
 File: ./Bilder/logo_ntb.png Graphic file (type png)
 
 <use ./Bilder/logo_ntb.png>
 Package pdftex.def Info: ./Bilder/logo_ntb.png used on input line 45.
 (pdftex.def)             Requested size: 163.62994pt x 56.9055pt.
 
-<./Bilder/logo_htw.png, id=45, 301.125pt x 67.25125pt>
+<./Bilder/logo_htw.png, id=89, 301.125pt x 67.25125pt>
 File: ./Bilder/logo_htw.png Graphic file (type png)
 
 <use ./Bilder/logo_htw.png>
@@ -937,7 +937,7 @@ Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 111.
 [5
 
-] <./Bilder/Datenmodell.pdf, id=94, 844.65562pt x 596.98032pt>
+] <./Bilder/Datenmodell.pdf, id=149, 844.65562pt x 596.98032pt>
 File: ./Bilder/Datenmodell.pdf Graphic file (type pdf)
 
 <use ./Bilder/Datenmodell.pdf>
@@ -948,7 +948,7 @@ File: ./Bilder/Datenmodell.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./Bilder/Datenmodell.pdf used on input line 112.
 (pdftex.def)             Requested size: 844.65356pt x 596.97885pt.
 
-<./Bilder/Datenmodell.pdf, id=97, page=1, 844.65562pt x 596.98032pt>
+<./Bilder/Datenmodell.pdf, id=152, page=1, 844.65562pt x 596.98032pt>
 File: ./Bilder/Datenmodell.pdf Graphic file (type pdf)
 
 <use ./Bilder/Datenmodell.pdf, page 1>
@@ -990,7 +990,7 @@ Package pdftex.def Info: ./Bilder/Datenmodell.pdf, page1 used on input line 112
 .
 (pdftex.def)             Requested size: 591.25491pt x 417.88336pt.
  [6 <./Bilder/Datenmodell.pdf>]
-<./Bilder/mockup.pdf, id=116, 794.97pt x 614.295pt>
+<./Bilder/mockup.pdf, id=172, 794.97pt x 614.295pt>
 File: ./Bilder/mockup.pdf Graphic file (type pdf)
  <use ./Bilder/mockup.pdf>
 Package pdftex.def Info: ./Bilder/mockup.pdf used on input line 115.
@@ -1001,7 +1001,7 @@ File: ./Bilder/mockup.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./Bilder/mockup.pdf used on input line 115.
 (pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
 
-<./Bilder/mockup.pdf, id=119, page=1, 794.97pt x 614.295pt>
+<./Bilder/mockup.pdf, id=175, page=1, 794.97pt x 614.295pt>
 File: ./Bilder/mockup.pdf Graphic file (type pdf)
 
 <use ./Bilder/mockup.pdf, page 1>
@@ -1021,7 +1021,7 @@ File: ./Bilder/mockup.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./Bilder/mockup.pdf, page1 used on input line 115.
 (pdftex.def)             Requested size: 596.22604pt x 460.72011pt.
 
-<./Bilder/mockup.pdf, id=120, page=2, 794.97pt x 614.295pt>
+<./Bilder/mockup.pdf, id=176, page=2, 794.97pt x 614.295pt>
 File: ./Bilder/mockup.pdf Graphic file (type pdf)
 
 <use ./Bilder/mockup.pdf, page 2>
@@ -1063,7 +1063,7 @@ File: ./Bilder/mockup.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./Bilder/mockup.pdf used on input line 116.
 (pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
 
-<./Bilder/mockup.pdf, id=140, page=3, 794.97pt x 614.295pt>
+<./Bilder/mockup.pdf, id=196, page=3, 794.97pt x 614.295pt>
 File: ./Bilder/mockup.pdf Graphic file (type pdf)
 
 <use ./Bilder/mockup.pdf, page 3>
@@ -1083,7 +1083,7 @@ File: ./Bilder/mockup.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./Bilder/mockup.pdf, page3 used on input line 116.
 (pdftex.def)             Requested size: 596.22604pt x 460.72011pt.
 
-<./Bilder/mockup.pdf, id=141, page=4, 794.97pt x 614.295pt>
+<./Bilder/mockup.pdf, id=197, page=4, 794.97pt x 614.295pt>
 File: ./Bilder/mockup.pdf Graphic file (type pdf)
 
 <use ./Bilder/mockup.pdf, page 4>
@@ -1200,32 +1200,106 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 270.
 [12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 276.
+Kapitel 5.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 276.
+(babel)             in language  on input line 271.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 276.
+(babel)             in language  on input line 271.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 276.
+(babel)             in language  on input line 287.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 276.
- [13
+(babel)             in language  on input line 287.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 289.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 289.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 291.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 291.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 293.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 293.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 295.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 295.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 297.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 297.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 299.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 299.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 301.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 301.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 303.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 303.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 306.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 306.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 306.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 306.
+[13
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.306 \newpage
+              ]
+Kapitel 6.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 307.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 307.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 310.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 310.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 310.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 310.
+[14
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 276.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 316.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 316.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 316.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 316.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 316.
+ [15
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 316.
  (./Projekt_webappliaktion.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 276.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 276.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 316.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 316.
 Package rerunfilecheck Info: File `Projekt_webappliaktion.out' has not changed.
 
-(rerunfilecheck)             Checksum: B6B42DA7C4735D6B9F0C5CCB08296590;538.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 276.
+(rerunfilecheck)             Checksum: CB4DD47965400800BC4E7E53C25352C8;1102.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 316.
  ) 
 Here is how much of TeX's memory you used:
- 14888 strings out of 493089
- 256490 string characters out of 6134842
- 695320 words of memory out of 5000000
- 18056 multiletter control sequences out of 15000+600000
+ 14916 strings out of 493089
+ 256803 string characters out of 6134842
+ 695326 words of memory out of 5000000
+ 18070 multiletter control sequences out of 15000+600000
  17619 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  48i,21n,78p,943b,3830s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1243,10 +1317,10 @@ ve/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive
 /2015/texmf-dist/fonts/type1/public/cm-super/sfsx2074.pfb></usr/local/texlive/2
 015/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/201
 5/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on Projekt_webappliaktion.pdf (13 pages, 795935 bytes).
+Output written on Projekt_webappliaktion.pdf (15 pages, 802302 bytes).
 PDF statistics:
- 361 PDF objects out of 1000 (max. 8388607)
- 305 compressed objects within 4 object streams
- 134 named destinations out of 1000 (max. 500000)
- 156 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 428 PDF objects out of 1000 (max. 8388607)
+ 370 compressed objects within 4 object streams
+ 148 named destinations out of 1000 (max. 500000)
+ 244 words of extra memory for PDF output out of 10000 (max. 10000000)
 
