@@ -10,5 +10,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
     `Nr` int DEFAULT NULL,
     `PLZ` int DEFAULT NULL,
     `City` varchar(60) DEFAULT NULL,
+    `lat` float(60) DEFAULT NULL,
+    `lng` float(60) DEFAULT NULL,
   PRIMARY KEY (`UID`)
 );
