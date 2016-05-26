@@ -128,7 +128,7 @@ Webapplikation: \url{http://614879-13.web.fh-htwchur.ch/projekt-web/Website/sear
 
 \section{Facebook-Login}
 Der Facebook login wurde mit dem PHP SDK \cite{phpsdk} von Facebook realisiert.
-Für einen Facebook Login muss ein Facebook Developer Account erstellt werden. Danach kann die App erstellt werden und es wird eine App-ID und ein App-Secret erstellt.
+Um ein Facebook Login auf der eigenenen Seite zu ermöglichen, muss der Entwickler ein Facebook Developer Account erstellen. Danach kann die App auf der Facebook Developerseite erstellt werden und es wird eine App-ID und ein App-Secret generiert. Diese beiden credentials müssen in der Anfrage auf den Facebookserver mitgegeben werden, sonst funktioniert die Anfrage nicht.
 Das Hauptskript für den Facebooklogin ist im folgenden beschrieben.\\
 
 \begin{lstlisting}[language=PHP, frame=single, captionpos=b,caption= fbconfig.php]
