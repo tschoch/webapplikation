@@ -197,6 +197,7 @@ if ( isset( $session ) ) {
  	    
 \end{lstlisting}
 
+\newpage
 \noindent
 Am Anfang einer Seite wird geprüft ob man bereits bei Facebook eingeloggt ist. Dies geschieht indem geprüft wird ob die Session variable FBID bereits gesetzt ist.
 
@@ -214,10 +215,6 @@ php endif
 ?> 
 \end{lstlisting}
 
-
-
-
-\newpage
 \section{Maps}
 \begin{lstlisting}[language=HTML, frame=single, captionpos=b]
 <!DOCTYPE html>
@@ -247,10 +244,10 @@ key=YOUR_API_KEY&callback=initMap">
 </html>
 \end{lstlisting}
 
+\newpage
 \noindent
 Für die Suche auf der Karte wird Google Map verwendet, auf dem vorhergehendem Bild ist die Erstellung einer einfachen Karte zu sehen. Wichtig ist, damit man dies tun kann, einen Entwickler Account bei Google zu machen, damit kann man sich dann einen API-Key für seine App generieren lassen.\\
 
-\newpage
 \noindent
 Um die Adressen aus der Datenbank auf der Map darzustellen muss aus der Adresse die Längen- und Breitengrade herausgefunden werden. Erneut liefert Google dazu ein API, genannt Geocode, welches einem dies abnimmt. Dabei wird die Adresse von welcher die Geolocation gesucht wird dem Parameter adress in der Adresszeile des \\ 
 Browsers mitgegeben: \url{ https://maps.googleapis.com/maps/api/geocode/json?address=Pulverm
