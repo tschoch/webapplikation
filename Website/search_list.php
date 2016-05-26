@@ -160,7 +160,8 @@ $_SESSION['own_rate_check'] = 0;
                             
                         <?php   
                             $rowcount = 1;
-                            foreach ($results as $row) {    
+                            foreach ($results as $row) {   
+                             
                         ?> 
                             <tr class="table_row" id="<?php echo $rowcount?>" onclick="function()"  >
                             <td id="name_list" ><?php echo $row['Ffname']?></td>

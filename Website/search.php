@@ -1,35 +1,100 @@
         
 <?php
     $offer   = "%{$_POST['search']}%";
-    $place_i = "%{$_POST['place']}%";
-    $place_s = "%{$_POST['place']}%";
-    $range   = $_POST['range'];
+    $place   = $_POST['place'];
+    $range_1 = $_POST['range'];
+    $range   = $range_1 + 5;      
+    if (empty($range)) {
+        $range = 5;
+    }
+    if (empty($place)) {
+            $range = 200;
+        }
 
+         // function to geocode address, it will return false if unable to geocode address
+        function geocode($address){
+
+            // url encode the address
+            $address = urlencode($address);
+
+            // google map geocode api url
+            $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address={$address}";
+
+            // get the json response
+            $resp_json = file_get_contents($url);
+
+            // decode the json
+            $resp = json_decode($resp_json, true);
+
+            // response status will be 'OK', if able to geocode given address 
+            if($resp['status']='OK'){
+
+                // get the important data
+                $lati = $resp['results'][0]['geometry']['location']['lat'];
+                $longi = $resp['results'][0]['geometry']['location']['lng'];
+                $formatted_address = $resp['results'][0]['formatted_address'];
+
+                // verify if data is complete
+                if($lati && $longi && $formatted_address){
+
+                    // put the data in the array
+                    $data_arr = array();            
+
+                    array_push(
+                        $data_arr, 
+                            $lati, 
+                            $longi, 
+                            $formatted_address
+                        );
+
+                    return $data_arr;
+
+                }else{
+                    return false;
+                }
+
+            }else{
+                return false;
+            }
+        }
+
+
+    $data_arr = geocode($place . ",CH"); 
+    $lat = $data_arr[0];
+    $lng = $data_arr[1];
 
 if (($place_i != NULL) || ($place_s != NULL) || ($offer != NULL)){
 
-        $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-
-        if($stmt = $mysqli->prepare("SELECT Ffname, PLZ, City, Offer_1, Offer_2, Offer_3, Fuid, lat, lng FROM Users WHERE (Offer_1 LIKE ? OR Offer_2 LIKE ? OR Offer_3 LIKE ? ) AND (PLZ LIKE ? OR City LIKE ?)")){
-
-              $stmt->bind_param("sssis", $offer, $offer,$offer,$place_i,$place_s); 
-
-              $stmt->execute();
-            
-              $stmt->bind_result($out_Ffname, $out_PLZ, $out_City, $out_Offer_1, $out_Offer_2, $out_Offer_3, $out_Fuid, $out_lat, $out_lng);
-
-              $results = array();
-              while ($stmt->fetch()) {
-                $results [] = array('Ffname' => $out_Ffname, 'PLZ' => $out_PLZ, 'City' => $out_City, 'Offer_1' => $out_Offer_1, 'Offer_2' => $out_Offer_2, 'Offer_3' => $out_Offer_3, 'Fuid' => $out_Fuid, 'lat' => $out_lat, 'lng' => $out_lng);
-              }
-            
-            $stmt->close();
-
-            $mysqli->close(); 
-
-        }
+    $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     
-    }else{
+    
+   // "SELECT Ffname, PLZ, City, Offer_1, Offer_2, Offer_3, Fuid, lat, lng FROM Users WHERE (Offer_1 LIKE ? OR Offer_2 LIKE ? OR Offer_3 LIKE ? ) AND (City LIKE ? OR PLZ = ?)"
+    
+   // "ssssi",$offer, $offer,$offer,$place_s,$place_i
+    
+    if (!($stmt = $mysqli->prepare("SELECT Ffname, PLZ, City, Offer_1, Offer_2, Offer_3, Fuid, lat, lng, ( 6371  * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( lat ) ) ) ) AS distance FROM Users WHERE (Offer_1 LIKE ? OR Offer_2 LIKE ? OR Offer_3 LIKE ? ) HAVING distance < ?  ORDER BY distance"))) {
+        echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+    }
+    if (!$stmt->bind_param("dddsssd", $lat, $lng, $lat, $offer, $offer, $offer, $range)) {
+        echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+    }
+    if (!$stmt->execute()) {
+        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+    }
+    if (!$stmt->bind_result($out_Ffname, $out_PLZ, $out_City, $out_Offer_1, $out_Offer_2, $out_Offer_3, $out_Fuid, $out_lat, $out_lng,$out_distance )) {
+        echo "Binding output parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+}
+    
+    $results = array();
+    while ($stmt->fetch()) {
+        $results [] = array('Ffname' => $out_Ffname, 'PLZ' => $out_PLZ, 'City' => $out_City, 'Offer_1' => $out_Offer_1, 'Offer_2' => $out_Offer_2, 'Offer_3' => $out_Offer_3, 'Fuid' => $out_Fuid, 'lat' => $out_lat, 'lng' => $out_lng, 'distance' => $out_distance );
+    }
+    
+    $stmt->close();
+
+    $mysqli->close(); 
+
+}else{
     $results = NULL;  
     }
 
