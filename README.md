@@ -1,7 +1,7 @@
 # Webapplikation CarParts
 
 ### Installations Anleitung localhost
-Voraussetzngen: Localhost und Datenbank (mysql 5.5 und PHP 5.*)
+Voraussetzngen: Localhost auf Ubuntu 14.04 und Datenbank (mysql 5.5 und PHP 5.*)
 
 1. Die Ordner in ein Unterverzeichnis Namens projekt_web des WebServers kopieren
 2. Datenbankconfig in der Datei WebServer/Documents/projekt_web/phplogin/dbconfig.php anpassen
