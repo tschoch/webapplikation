@@ -13,3 +13,4 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `lat` float DEFAULT NULL,
   `lng` float DEFAULT NULL,
   PRIMARY KEY (`UID`)
+);
