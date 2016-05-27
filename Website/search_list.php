@@ -8,145 +8,23 @@ $_SESSION['own_rate_check'] = 0;
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-		<meta name="description" content="">
-		<meta name="author" content="">
-
-		<title>Car Parts</title>
-
-		<!-- Bootstrap core CSS -->
-		<link href="bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="stylesheet.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="star/star-rating-svg.css">
-                
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        <script src="star/jquery.star-rating-svg.js"></script> 
-	    <script src="script.js"></script>
-        <!--    starrating: https://github.com/nashio/star-rating-svg  -->
+        <?php 
+            include 'main_paige/main_head.txt';
+        ?> 
 	</head>
 
 	<body>
-        <?php if ($_SESSION['FBID']): ?>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-		  <div class="container">
-			<div class="navbar-header">
-			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			  </button>
-			  <a class="navbar-brand" onclick='location.href="delete_cookie.php"'>Car Parts</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-			  <form class="navbar-form navbar-right">
-				<div class="form-group">
-				 <button type="button" class="btn btn-primary" onclick='location.href="edit.php"'>Edit</button>
-				 <button type="button" class="btn btn-primary" onclick='location.href="../phplogin/logout.php"'>Logout</button>
-				</div>
-			  </form>
-			</div><!--/.navbar-collapse -->
-		  </div>
-		</nav>
-
-		<!-- Main jumbotron for a primary marketing message or call to action -->
-		<div class="jumbotron">
-		  <div class="container">
-			<h2>Suche</h2>
-			<p>Suche nach einem Anbieter in deiner Umgebung</p>
-		  </div>
-		</div>
-
+            <?php if ($_SESSION['FBID']){  
+              include 'main_paige/main_1.txt';
+            ?>  
         
-         <?php
-        require '../phplogin/dbconfig.php';
-        require 'search.php';
-        ?>
-        
-        
-		<div class="container">
-		  <!-- Example row of columns -->
-		  <div class="row">
-            <form class="form-horizontal" action="" method="post">
-			<div class="col-md-12">
-				<form class="form-horizontal">
-			<div class="form-group">
-				  <div class="col-xs-4">
-					  <input class="form-control" id="search" name="search" placeholder="Suchbegriff"  type="text">
-				  </div>
-				  <div class="col-xs-4">
-					  <input class="form-control" id="place" name="place" placeholder="Ort" type="text">
-				  </div>
-				  <div class="col-xs-4">
-					  <input class="form-control" id="range" name="range" placeholder="Umkreis in km"  type="text">
-				  </div>
-			  </div>
-			  <div class="form-group">
-				  <div class="col-xs-12">
-					<button type="submit" class="btn btn-primary pull-right">Suche</button>
-				  </div>
-			  </div>	
-		  </form>
-			</div>
-            </form>    
-		  </div>
-		<hr>
-			<div class="row"> 
-				 <div class="form-group">
-				  <div class="right col-xs-12">
-					<ul class="nav nav-pills">
-						<li><a href="search_map.php">Map</a></li>
-						<li class="active"><a href="search_list.php">Liste</a></li>
-
+                    <ul class="nav nav-pills">
+						<li id="map_button"><a href="search_map.php">Map</a></li>
+						<li id="list_button" class="active"><a href="search_list.php">Liste</a></li>
 					</ul>
-				  </div>
-				</div>	
-			</div>	            
-			<hr>	            
-			<div class="row"> 
-				<div class="col-md-6 well">
-					<div class="col-md-6">
-						<h2 id="anb_visit" >Anbieter </h2>
-						<p id="ort_visit" >PLZ Ort</p>
-						<br>
-						<p id="offer_visit" >spezialisiert auf Angebot_1, Angebot2, Angebot_3</p>
-                        <p id ="fid_dienstleister_card" style="display:none;" > </p>
-                        
-                      <div class="dropdown">
-                       <a class="dropdown-toggle" type="button" id="show_rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >Bewertung
-                       <span class="caret"></span></a>
-                       <ul class="dropdown-menu" role="menu" id="rate_drpdwn_list" >
-                            <li ><a class="drdwn_show_r" id="drdwn_show_rate_1" href="#">Angebot_1</a></li>
-                            <li ><a class="drdwn_show_r" id="drdwn_show_rate_2" href="#">Angebot_2</a></li>
-                            <li ><a class="drdwn_show_r" id="drdwn_show_rate_3" href="#">Angebot_3</a></li> 
-                       </ul>
-                     </div>     
-                    
-                    <div class="show_stars">
-                    </div>
-                    <div class="anz_bewert">
-                    </div>    
-                    <br>                      
-                    <div>
-				        <button type="button" id="bewert_button" class="btn btn-primary" onclick='location.href="bewerten.php"'>Bewerten</button>
-                         <a type="button" href="" id="email_senden" class="btn btn-primary">E-mail senden</a>
-				    </div>        
-				</div> 
-
-				<div class="col-md-6">
-					<br>
-					<br>
-					<br>
-					<img id="pic" src="uploads/10_1" style="width:100%; max-height:250px"/>  
-                    <p id="img_label"></p>
-				</div>
-                    
-                    
-                    
-				</div>   
+            <?php 
+              include 'main_paige/main_2.txt';
+            ?>  
 				<div class="col-md-6" id="table_height">
 					<table class="table table-striped" id="tableId">
 						<thead>
@@ -184,7 +62,7 @@ $_SESSION['own_rate_check'] = 0;
                         ?>
 						</tbody>
 					</table>
-				</div>
+				</div>        
 			</div>            
 		<hr>
 		  <footer>
@@ -192,40 +70,9 @@ $_SESSION['own_rate_check'] = 0;
 		  </footer>
             
 		</div> <!-- /container -->
-        <?php else: ?>   
-       <!-- Before login --> 
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-		  <div class="container">
-			<div class="navbar-header">
-			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			  </button>
-			  <a class="navbar-brand">Car Parts</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-			  <form class="navbar-form navbar-right">
-				</div>
-			  </form>
-			</div><!--/.navbar-collapse -->
-		  </div>
-		</nav>
-        
-        <div class="jumbotron">
-		  <div class="container" style="text-align: center">
-            <br>  
-			<h1>Willkommen bei CarParts</h1>
-		  </div>
-		</div>
-        <div class="container" style="text-align: center">
-            <h2>Not Connected</h2>
-            <h2>Login with Facebook</h2>
-            <br>
-            <input type="image" style="height:40px;width:160px;" src="fb_button.png" onclick='location.href=" ../phplogin/fbconfig.php"'/>
-        </div>
-        <?php endif ?>   
+        <?php }else{  
+          include 'main_paige/main_3.txt';
+        } ?>   
 
 		<!-- Bootstrap core JavaScript
 		================================================== -->

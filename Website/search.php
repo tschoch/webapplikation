@@ -19,9 +19,9 @@
         }
     }
 
-        setcookie("offer", $offer, time() + 60);
-        setcookie("place", $place, time() + 60);
-        setcookie("range", $range, time() + 60);
+        setcookie("offer", $offer, time() + 86400);
+        setcookie("place", $place, time() + 86400);
+        setcookie("range", $range, time() + 86400);
         
 
 
