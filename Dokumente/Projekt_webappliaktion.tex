@@ -273,8 +273,7 @@ aufgerufen. Mit dieser Funktion wird dynamisch ein Marker in der Map gesetzt.
 \begin{tabular}{|p{1.2cm}|p{1.2cm}| p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|}\hline
       & T1 & T2 & T3 & T4 &T5 & T6 & T7 & T8 & T9 \\ \hline
   A.1 &  X &    &    &    &   &    &    &    &     \\ \hline
-  A.2 &    &  X &    &    &   &    &    &    &     \\ \hline
-  A.3 &    &    &  X &    &   &    &    &    &     \\ \hline
+  A.2 &    &  X &  X &    &   &    &    &    &     \\ \hline
   A.4 &    &    &    & X  &   &    &    &    &     \\ \hline
   A.5 &    &    &    &    & X &    &    &    &     \\ \hline
   A.6 &    &    &    &    &   & X  &    &    &     \\ \hline
@@ -285,14 +284,25 @@ aufgerufen. Mit dieser Funktion wird dynamisch ein Marker in der Map gesetzt.
 \caption{Tests}
 \end{table}
 \section{Test 1}
+10 Personen loggen sich mit Ihrem Facebook Profil auf der Seite ein. Anschliessend wird in der Datenbank überprüft ob Name, E-Mail Adresse und Facebook ID übergeben wurden. Alle 10 Benutzer wurden in der Datenbank übernommen mit den angeforderten Credentials. 
 
 \section{Test 2}
+Die Anwender(Dienstleister & Benutzer) werden aufgefordert Ihr Profil im entsprechenden Edit-Fenster anzupassen, diese Änderung soll in der Datenbank ersichtlich sein. Alle 10 Benutzer haben Ihr Profil Ihren Wünschen nach angepasst und alle Werte wurden in der Datebank übernommen.
+
 
 \section{Test 3}
 
+5 Anfragen an die Webapplikation werden nur mit dem Suchbegriff "Dienstleistung" gestartet. Alle Dienstleister werden ausgegeben, bei welchem eine Dienstleistung dem Suchbegriff entspricht. 
+
 \section{Test 4}
 
+5 Anfragen an die Webapplikation werden nur mit dem Suchbegriff "Ort" gestartet. 
+Es werden alle Dienstleister ausgegeben, bei welchen sich der Dienstleister in einem Umkreis von 5 km um den Ortskern befinden. 
+
 \section{Test 5}
+
+5 Anfragen an die Webapplikation werden nur mit dem Suchbegriff "Radius" gestartet. 
+Es werden alle Dienstleister ausgegeben, bei welchen sich der Dienstleister in einem Umkreis von 5 km um den Ortskern befinden. 
 
 \section{Test 6}
 
