@@ -9,13 +9,13 @@ $_SESSION['own_rate_check'] = 0;
 <html lang="en">
 	<head>
         <?php 
-            include 'main_paige/main_head.txt';
+            include 'main_paige/main_head.php';
         ?> 
 	</head>
 
 	<body>
             <?php if ($_SESSION['FBID']){  
-              include 'main_paige/main_1.txt';
+              include 'main_paige/main_1.php';
             ?>
                 
                     <ul class="nav nav-pills">
@@ -23,7 +23,7 @@ $_SESSION['own_rate_check'] = 0;
 						<li><a href="search_list.php">Liste</a></li>
 					</ul>
             <?php 
-              include 'main_paige/main_2.txt';
+              include 'main_paige/main_2.php';
             ?>
 
 				<div class="col-md-6">
@@ -76,7 +76,7 @@ $_SESSION['own_rate_check'] = 0;
             
 		</div> <!-- /container -->
         <?php }else{    
-            include 'main_paige/main_3.txt';
+            include 'main_paige/main_3.php';
         }?>   
 
 		<!-- Bootstrap core JavaScript
