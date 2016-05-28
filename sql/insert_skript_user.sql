@@ -1,5 +1,5 @@
 INSERT INTO `Users` (`UID`, `Fuid`, `Ffname`, `Femail`, `Offer_1`, `Offer_2`, `Offer_3`, `Street`, `Nr`, `PLZ`, `City`, `lat`, `lng`) VALUES
-(1, '848871701902987', 'Benjamin Mosberger', 'benjamin.mosberger@hotmail.com', 'Bremsen', 'pneu', 'reifen', 'Wiedenstrasse ', 15, 9323, 'Steinach', 47.5029, 9.43483),
+(1, '848871701902987', 'Benjamin Mosberger', 'mosberger@carparts.com', 'Bremsen', 'pneu', 'reifen', 'Centralbahnstrasse ', 10, 4051, 'Basel', 47.548243, 7.588212),
 (2, '120445915025924', 'Tobias Schoch', 'schoch.tobias@gmail.com', 'reifen', 'fenster', 'bremsen', 'Sonnmattstrasse', 3, 9320, 'Arbon', 47.517, 9.41714),
 (6, '1078105118918571', 'Niklaus Schoch', 'nikboykick@gmail.com', 'Fenster ', 'Reifen', 'Folieren', 'Eichenstrasse ', 46, 9320, 'Arbon', 47.5129, 9.42437),
 (7, '1099436336784538', 'Remo Stutz', 'stutz_remo@hotmail.com', 'reifen', 'bremsen', '', 'FÃ¶hrenstrasse', 4, 9320, 'Arbon', 47.5094, 9.41877),
