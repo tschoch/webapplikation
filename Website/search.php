@@ -77,8 +77,6 @@
     $lat = $data_arr[0];
     $lng = $data_arr[1];
 
-if (($place_i != NULL) || ($place_s != NULL) || ($offer != NULL)){
-
     $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     
     
@@ -109,10 +107,6 @@ if (($place_i != NULL) || ($place_s != NULL) || ($offer != NULL)){
     $stmt->close();
 
     $mysqli->close(); 
-
-}else{
-    $results = NULL;  
-    }
 
     if($results != NULL){
  ?>
@@ -157,6 +151,10 @@ $(document).ready(function(){
             var $shw_bewert = "Angebot_1, Angebot_2, Angebot_3";
         }
         var $offer_bewert = $shw_bewert.split(",");
+    
+        $("#drdwn_show_rate_1").empty();
+        $("#drdwn_show_rate_2").empty();
+        $("#drdwn_show_rate_3").empty();
             
         $("#drdwn_show_rate_1").html($offer_bewert[0]);
         $("#drdwn_show_rate_2").html($offer_bewert[1]);

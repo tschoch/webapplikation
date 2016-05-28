@@ -129,6 +129,7 @@ $(document).ready(function(){
         $("#anbieter_bewert").html("Anbieter: " + $name);
         $("#anbieter_bewert_h").val($name);
         $("#anbieter_id_bewert_h").val($fid_anbieter);
+    
         $("#drdwn_o_1").html($res[0]);
         $("#drdwn_o_2").html($res[1]);
         $("#drdwn_o_3").html($res[2]);
@@ -285,6 +286,11 @@ $(document).ready(function(){
         $(".anz_bewert").empty(); 
         $(".show_stars").starRating('setRating',0);
         $(".show_stars_offer").empty();
+        
+        $("#drdwn_show_rate_1").empty();
+        $("#drdwn_show_rate_2").empty();
+        $("#drdwn_show_rate_3").empty();
+        
         $("#drdwn_show_rate_1").html($offer_bewert[0]);
         $("#drdwn_show_rate_2").html($offer_bewert[1]);
         $("#drdwn_show_rate_3").html($offer_bewert[2]);

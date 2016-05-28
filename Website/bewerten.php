@@ -30,7 +30,6 @@ if( localStorage.getItem('bewert_check') == 0){
         <script>localStorage.setItem('bewert_check',1); </script>
         <script src="star/jquery.star-rating-svg.js"></script> 
         <!--    starrating: https://github.com/nashio/star-rating-svg-->
-		<script src="https://maps.googleapis.com/maps/api/js key=AIzaSyDAG3EVkm45lkKfYQwQ3c471LzIm1Ifzj4&signed_in=true&callback=initMap" async defer></script>
 	</head>
 
 	<body>
@@ -45,7 +44,7 @@ if( localStorage.getItem('bewert_check') == 0){
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="navbar-brand" href="search_list.php">Car Parts</a>
+			  <a class="navbar-brand" onclick='location.href="delete_cookie.php"'>Car Parts</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 			  <form class="navbar-form navbar-right">
@@ -78,9 +77,9 @@ if( localStorage.getItem('bewert_check') == 0){
                           <button class="btn btn-primary dropdown-toggle" type="button" id="drpdwn" data-toggle="dropdown">Dienstleistung
                           <span class="caret"></span></button>
                           <ul class="dropdown-menu">
-                            <li ><a id="drdwn_o_1" href="#">Dienstleistung_1</a></li>
-                            <li ><a id="drdwn_o_2" href="#">Dienstleistung_2</a></li>
-                            <li ><a id="drdwn_o_3" href="#">Dienstleistung_3</a></li>
+                            <li ><a id="drdwn_o_1" href="#"></a></li>
+                            <li ><a id="drdwn_o_2" href="#"></a></li>
+                            <li ><a id="drdwn_o_3" href="#"></a></li>
                           </ul>
                             <p id="bewert_fid" style="display:none;"></p> 
                         </div>
