@@ -86,7 +86,9 @@ if (($place_i != NULL) || ($place_s != NULL) || ($offer != NULL)){
     
    // "ssssi",$offer, $offer,$offer,$place_s,$place_i
     
-    if (!($stmt = $mysqli->prepare("SELECT Ffname, Femail, PLZ, City, Offer_1, Offer_2, Offer_3, Fuid, lat, lng, ( 6371  * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( lat ) ) ) ) AS distance FROM Users WHERE (Offer_1 LIKE ? OR Offer_2 LIKE ? OR Offer_3 LIKE ? ) HAVING distance < ?  ORDER BY distance"))) {
+    if (!($stmt = $mysqli->prepare("SELECT Ffname, Femail, PLZ, City, Offer_1, Offer_2, Offer_3, Fuid, lat, lng, ( 6371  * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( lat ) ) ) ) AS distance FROM Users 
+    WHERE ( ((Offer_1  <>  '') || (Offer_2  <>  '') || (Offer_3  <>  '') ) 
+    AND(Offer_1 LIKE ? OR Offer_2 LIKE ? OR Offer_3 LIKE ?) ) HAVING distance < ?  ORDER BY distance"))) {
         echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     }
     if (!$stmt->bind_param("dddsssd", $lat, $lng, $lat, $offer, $offer, $offer, $range)) {
@@ -144,6 +146,7 @@ $(document).ready(function(){
         localStorage.setItem('offer',$offer);
         localStorage.setItem('name',$name);
         localStorage.setItem('bewert_check',1);
+        localStorage.setItem('email_check',1);
         localStorage.setItem('fid_anbieter',$file_id);
     
         //set bewert_drpdwn

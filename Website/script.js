@@ -3,6 +3,7 @@ var map;
 var marker;
 var $email;
 localStorage.setItem('bewert_check',0); //ob anbierter ausgewählt
+localStorage.setItem('email_check',0); //ob anbierter ausgewählt
 
 (function($){  
 var s = document.createElement("script");
@@ -52,7 +53,7 @@ $("head").append(s);
                     
                     //check ob dienstleister angewählt
                     localStorage.setItem('bewert_check',1);
-        
+                    localStorage.setItem('email_check',1);
                     //set angaben von karte
 					$("#anb_visit").html($name);
 					$("#ort_visit").html($place);
@@ -219,12 +220,14 @@ $(document).ready(function(){
         $(this).addClass('selectRow_odd');
     });
 });
+
+
   
 //set email
 $(document).ready(function(){
     $("#email_senden").click(function() {
         
-        if($email == null){
+        if(localStorage.getItem('email_check') == 0){
             alert("Zuerst ein Anbieter anwählen");
         }else{
             $(this).attr("href", "mailto:" + $email);
@@ -255,6 +258,7 @@ $(document).ready(function(){
         
         //check ob dienstleister angewählt
         localStorage.setItem('bewert_check',1);
+        localStorage.setItem('email_check',1);
         
         //set angaben von karte
         $("#anb_visit").html($name);
