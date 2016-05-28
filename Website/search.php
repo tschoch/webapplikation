@@ -119,13 +119,15 @@ if (($place_i != NULL) || ($place_s != NULL) || ($offer != NULL)){
 
 <script>
 
+var $email;    
+    
 //set elements of first advise
 $(document).ready(function(){
         var $row_count = 1;
         var $plz = $("#1").find("#plz_list").html();
         var $ort = $("#1").find("#ort_list").html();
 		var $name = $("#1").find("#name_list").html();
-        var $email = $(this).find("#email_list").html();
+            $email = $(this).find("#email_list").html();
         var $offer = $("#1").find("#offer_list").html();   
             $file_id = $("#1").find("#fid_list").html(); 
         var $pfad = "uploads/"+ $file_id +"_1";
@@ -141,7 +143,6 @@ $(document).ready(function(){
         $("#test").html($file_id); 
         $("#pic").attr('src',$pfad);
         $("#fid_dienstleister_card").html($file_id); 
-        $("#email_senden").attr("href", "mailto:" + $email);
     
         localStorage.setItem('offer',$offer);
         localStorage.setItem('name',$name);
@@ -194,6 +195,18 @@ $(document).ready(function(){
     $("#1").addClass('selectRow_odd');
 });
 
+//set email
+$(document).ready(function(){
+    $("#email_senden").click(function() {
+        
+        if(localStorage.getItem('email_check') == 0){
+            alert("Zuerst ein Anbieter anwählen");
+        }else{
+            $(this).attr("href", "mailto:" + $email);
+        }
+    });
+});    
+    
 //bewertung
 $(document).ready(function(){
     
