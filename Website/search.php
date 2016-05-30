@@ -2,13 +2,15 @@
     $offer   = "%{$_POST['search']}%";
     $place   = $_POST['place'];
     $range_1 = $_POST['range'];
-    $range   = $range_1 + 5;  
+	 if (empty($place)) {
+            $range = 200;
+        }
+     if (!empty($range_1)) {
+            $range = $range_1 + 5;  
+        }
     if (empty($range)) {
         $range = 5;
     }
-    if (empty($place)) {
-            $range = 200;
-        }
 
 
     if(($offer == "%%")&&($place == NULL)&&($range == 200)){
