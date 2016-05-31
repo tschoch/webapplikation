@@ -128,7 +128,7 @@ Webapplikation: \url{http://614879-13.web.fh-htwchur.ch/projekt-web/Website/sear
 
 \section{Facebook-Login}
 Der Facebook login wurde mit dem PHP SDK \cite{phpsdk} von Facebook realisiert.
-Um ein Facebook Login auf der eigenenen Seite zu ermöglichen, muss der Entwickler ein Facebook Developer Account erstellen. Danach kann die App auf der Facebook Developerseite erstellt werden und es wird eine App-ID und ein App-Secret generiert. Diese beiden credentials müssen in der Anfrage auf den Facebookserver mitgegeben werden, sonst funktioniert die Anfrage nicht.
+Um ein Facebook Login auf der eigenenen Seite zu ermöglichen, muss der Entwickler ein Facebook Developer Account \cite{fbdeveloper} erstellen. Danach kann die App auf der Facebook Developerseite erstellt werden und es wird eine App-ID und ein App-Secret generiert. Diese beiden credentials müssen in der Anfrage auf den Facebookserver mitgegeben werden, sonst funktioniert die Anfrage nicht.
 Das Hauptskript für den Facebooklogin ist im folgenden beschrieben.\\
 
 \begin{lstlisting}[language=PHP, frame=single, captionpos=b,caption= fbconfig.php]
@@ -269,25 +269,28 @@ aufgerufen. Mit dieser Funktion wird dynamisch ein Marker in der Map gesetzt.
 
 \newpage
 \chapter{Test}
+\textbf{Beschreibung}\\
+Das Testen erfolgte vollkommen manuell, das heisst wir haben alle Tests selbst ausgeführt und nicht automatisiert. 
 \begin{table}[H]
 \begin{tabular}{|p{1.2cm}|p{1.2cm}| p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|}\hline
       & T1 & T2 & T3 & T4 &T5 & T6 & T7 & T8 & T9 \\ \hline
   A.1 &  X &    &    &    &   &    &    &    &     \\ \hline
-  A.2 &    &  X &  X &    &   &    &    &    &     \\ \hline
-  A.4 &    &    &    & X  &   &    &    &    &     \\ \hline
-  A.5 &    &    &    &    & X &    &    &    &     \\ \hline
+  A.2 &    &  X &    &    &   &    &    &    &     \\ \hline
+  A.3 &    &  X &    &    &   &    &    &    &     \\ \hline
+  A.4 &    &    &  X &    &   &    &    &    &     \\ \hline
+  A.5 &    &    &    & X  & X &    &    &    &     \\ \hline
   A.6 &    &    &    &    &   & X  &    &    &     \\ \hline
   A.7 &    &    &    &    &   &    & X  &    &     \\ \hline
   A.8 &    &    &    &    &   &    &    &  X &     \\ \hline
   A.9 &    &    &    &    &   &    &    &    &  X  \\ \hline
  \end{tabular}
-\caption{Tests}
+\caption{Traceability Matrix}
 \end{table}
 \section{Test 1}
 10 Personen loggen sich mit Ihrem Facebook Profil auf der Seite ein. Anschliessend wird in der Datenbank überprüft ob Name, E-Mail Adresse und Facebook ID übergeben wurden. Alle 10 Benutzer wurden in der Datenbank übernommen mit den angeforderten Credentials. 
 \newline
 \begin{figure}[H]
-\includegraphics[height=10cm]{./Bilder/database.png}
+\includegraphics[height=9cm]{./Bilder/database.png}
 \centering
 \caption{Datenbankauszug Facebookdaten}
 \end{figure}
@@ -382,6 +385,9 @@ da wir uns diese Einarbeitungszeit sparen wollten, um dafür mehr Funktionalitä
 
 \bibitem{phpsdk}  Github. facebook-php-sdk-v4
  URL: \url{https://github.com/facebook/facebook-php-sdk-v4/} [Stand 6.4.2016].
+ \bibitem{fbdeveloper}  Facebook. Developer
+ URL: \url{facebook developer conference} [Stand 31.5.2016].
+
 \end{thebibliography}
 \end{document}
 
