@@ -246,12 +246,12 @@ key=YOUR_API_KEY&callback=initMap">
 
 \newpage
 \noindent
-Für die Suche auf der Karte wird Google Map verwendet, auf dem vorhergehendem Bild ist die Erstellung einer einfachen Karte zu sehen. Wichtig ist, damit man dies tun kann, einen Entwickler Account bei Google zu machen, damit kann man sich dann einen API-Key für seine App generieren lassen.\\
+Für die Suche auf der Karte wird Google Map verwendet, auf dem vorhergehendem Bild ist die Erstellung einer einfachen Karte zu sehen. Wichtig ist, damit man dies tun kann, einen Entwickler Account \cite{googledeveloper} bei Google zu machen , damit kann man sich dann einen API-Key für seine App generieren lassen.\\
 
 \noindent
 Um die Adressen aus der Datenbank auf der Map darzustellen muss aus der Adresse die Längen- und Breitengrade herausgefunden werden. Erneut liefert Google dazu ein API, genannt Geocode, welches einem dies abnimmt. Dabei wird die Adresse von welcher die Geolocation gesucht wird dem Parameter adress in der Adresszeile des \\ 
 Browsers mitgegeben: \url{ https://maps.googleapis.com/maps/api/geocode/json?address=Pulverm
-%C3%BChlestrasse+57,+7000+Chur }
+%C3%BChlestrasse+57,+7000+Chur }\cite{googlegeocode}
 Die Antwort kommt in diesem Fall mit JSON zurück, alternativ wäre noch XML verfügbar. Um diese Antwort in JavaScript zu verarbeiten wird        
 
 \begin{lstlisting}[ frame=single, captionpos=b,caption= script.php]
@@ -392,9 +392,12 @@ da wir uns diese Einarbeitungszeit sparen wollten, um dafür mehr Funktionalitä
 
 \bibitem{phpsdk}  Github. facebook-php-sdk-v4
  URL: \url{https://github.com/facebook/facebook-php-sdk-v4/} [Stand 6.4.2016].
- \bibitem{fbdeveloper}  Facebook. Developer
+ \bibitem{fbdeveloper}  Facebook Developer
  URL: \url{facebook developer conference} [Stand 31.5.2016].
-
+ \bibitem{googledeveloper}  Google Developer
+ URL: \url{https://developers.google.com} [Stand 31.5.2016].
+  \bibitem{googlegeocode}  Google Geocode
+ URL: \url{https://developers.google.com/maps/documentation/geocoding/intro?hl=de} [Stand 31.5.2016].
 \end{thebibliography}
 \end{document}
 
