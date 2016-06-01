@@ -20,3 +20,5 @@
 \contentsline {section}{\numberline {5.8}Test 8}{16}{section.5.8}
 \contentsline {section}{\numberline {5.9}Test 9}{16}{section.5.9}
 \contentsline {chapter}{\numberline {6}Lessons-learned}{17}{chapter.6}
+\contentsline {section}{\numberline {6.1}Team-Dynamik}{17}{section.6.1}
+\contentsline {section}{\numberline {6.2}Fazit}{17}{section.6.2}
